@@ -1,0 +1,1754 @@
+==================================
+Running PTSD ML Pipeline Experiments
+Number of runs: 100
+==================================
+
+--- Running Experiment 1/100 [0%] ---
+Sun Aug 10 18:32:59 PDT 2025: Starting run 1
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 1 completed successfully in 8m 28s
+  Best Model: LR_Balanced_SMOTETomek
+  AUC ROC: 0.6342
+  Recall (Class 0): 0.6203
+  Recall (Class 1): 0.7000
+Sun Aug 10 18:41:27 PDT 2025: Completed run 1
+
+--- Running Experiment 2/100 [1%] ---
+Progress: [1%] | Avg time/run: 8m 28s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 13h 58m 12s (finishing around )
+Sun Aug 10 18:41:27 PDT 2025: Starting run 2
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 2 completed successfully in 8m 23s
+  Best Model: EasyEnsemble_Default
+  AUC ROC: 0.6416
+  Recall (Class 0): 0.8077
+  Recall (Class 1): 0.5556
+Sun Aug 10 18:49:50 PDT 2025: Completed run 2
+
+--- Running Experiment 3/100 [2%] ---
+Progress: [2%] | Avg time/run: 8m 25s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 13h 44m 50s (finishing around )
+Sun Aug 10 18:49:50 PDT 2025: Starting run 3
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 3 completed successfully in 6m 19s
+  Best Model: BalancedBagging_Default
+  AUC ROC: 0.6610
+  Recall (Class 0): 0.5700
+  Recall (Class 1): 0.8000
+Sun Aug 10 18:56:09 PDT 2025: Completed run 3
+
+--- Running Experiment 4/100 [3%] ---
+Progress: [3%] | Avg time/run: 7m 43s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 12h 28m 31s (finishing around )
+Sun Aug 10 18:56:09 PDT 2025: Starting run 4
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 4 completed successfully in 6m 2s
+  Best Model: BalancedBagging_Default
+  AUC ROC: 0.6334
+  Recall (Class 0): 0.4269
+  Recall (Class 1): 0.8750
+Sun Aug 10 19:02:11 PDT 2025: Completed run 4
+
+--- Running Experiment 5/100 [4%] ---
+Progress: [4%] | Avg time/run: 7m 18s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 11h 40m 48s (finishing around )
+Sun Aug 10 19:02:11 PDT 2025: Starting run 5
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 5 completed successfully in 5m 59s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.6362
+  Recall (Class 0): 0.2366
+  Recall (Class 1): 1.0000
+Sun Aug 10 19:08:10 PDT 2025: Completed run 5
+
+--- Running Experiment 6/100 [5%] ---
+Progress: [5%] | Avg time/run: 7m 2s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 11h 8m 10s (finishing around )
+Sun Aug 10 19:08:10 PDT 2025: Starting run 6
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 6 completed successfully in 7m 26s
+  Best Model: EasyEnsemble_Default
+  AUC ROC: 0.5045
+  Recall (Class 0): 0.2209
+  Recall (Class 1): 1.0000
+Sun Aug 10 19:15:36 PDT 2025: Completed run 6
+
+--- Running Experiment 7/100 [6%] ---
+Progress: [6%] | Avg time/run: 7m 6s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 11h 7m 24s (finishing around )
+Sun Aug 10 19:15:36 PDT 2025: Starting run 7
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 7 completed successfully in 9m 17s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.7640
+  Recall (Class 0): 0.7081
+  Recall (Class 1): 0.7778
+Sun Aug 10 19:24:53 PDT 2025: Completed run 7
+
+--- Running Experiment 8/100 [7%] ---
+Progress: [7%] | Avg time/run: 7m 24s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 11h 28m 12s (finishing around )
+Sun Aug 10 19:24:53 PDT 2025: Starting run 8
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 8 completed successfully in 9m 4s
+  Best Model: BalancedRF_Default
+  AUC ROC: 0.7888
+  Recall (Class 0): 0.8883
+  Recall (Class 1): 0.7000
+Sun Aug 10 19:33:57 PDT 2025: Completed run 8
+
+--- Running Experiment 9/100 [8%] ---
+Progress: [8%] | Avg time/run: 7m 37s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 11h 40m 44s (finishing around )
+Sun Aug 10 19:33:57 PDT 2025: Starting run 9
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 9 completed successfully in 7m 33s
+  Best Model: EasyEnsemble_Medium
+  AUC ROC: 0.7121
+  Recall (Class 0): 0.5341
+  Recall (Class 1): 0.8889
+Sun Aug 10 19:41:31 PDT 2025: Completed run 9
+
+--- Running Experiment 10/100 [9%] ---
+Progress: [9%] | Avg time/run: 7m 36s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 11h 31m 36s (finishing around )
+Sun Aug 10 19:41:31 PDT 2025: Starting run 10
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 10 completed successfully in 8m 55s
+  Best Model: LR_Balanced_ADASYN
+  AUC ROC: 0.6116
+  Recall (Class 0): 0.6382
+  Recall (Class 1): 0.6000
+Sun Aug 10 19:50:26 PDT 2025: Completed run 10
+
+--- Running Experiment 11/100 [10%] ---
+Progress: [10%] | Avg time/run: 7m 44s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 11h 36m 0s (finishing around )
+Sun Aug 10 19:50:26 PDT 2025: Starting run 11
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 11 completed successfully in 8m 55s
+  Best Model: EasyEnsemble_Default
+  AUC ROC: 0.8436
+  Recall (Class 0): 0.6462
+  Recall (Class 1): 1.0000
+Sun Aug 10 19:59:21 PDT 2025: Completed run 11
+
+--- Running Experiment 12/100 [11%] ---
+Progress: [11%] | Avg time/run: 7m 51s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 11h 38m 39s (finishing around )
+Sun Aug 10 19:59:21 PDT 2025: Starting run 12
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 12 completed successfully in 6m 58s
+  Best Model: BalancedRF_Small
+  AUC ROC: 0.5325
+  Recall (Class 0): 0.6630
+  Recall (Class 1): 0.6250
+Sun Aug 10 20:06:19 PDT 2025: Completed run 12
+
+--- Running Experiment 13/100 [12%] ---
+Progress: [12%] | Avg time/run: 7m 46s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 11h 23m 28s (finishing around )
+Sun Aug 10 20:06:19 PDT 2025: Starting run 13
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 13 completed successfully in 6m 35s
+  Best Model: BalancedRF_Large
+  AUC ROC: 0.7574
+  Recall (Class 0): 0.8361
+  Recall (Class 1): 0.6667
+Sun Aug 10 20:12:54 PDT 2025: Completed run 13
+
+--- Running Experiment 14/100 [13%] ---
+Progress: [13%] | Avg time/run: 7m 41s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 11h 8m 27s (finishing around )
+Sun Aug 10 20:12:54 PDT 2025: Starting run 14
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 14 completed successfully in 6m 1s
+  Best Model: BalancedRF_AllFeatures
+  AUC ROC: 0.6648
+  Recall (Class 0): 0.5246
+  Recall (Class 1): 0.7778
+Sun Aug 10 20:18:55 PDT 2025: Completed run 14
+
+--- Running Experiment 15/100 [14%] ---
+Progress: [14%] | Avg time/run: 7m 34s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 10h 50m 44s (finishing around )
+Sun Aug 10 20:18:55 PDT 2025: Starting run 15
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 15 completed successfully in 6m 4s
+  Best Model: EasyEnsemble_Default
+  AUC ROC: 0.5799
+  Recall (Class 0): 0.5528
+  Recall (Class 1): 0.7000
+Sun Aug 10 20:24:59 PDT 2025: Completed run 15
+
+--- Running Experiment 16/100 [15%] ---
+Progress: [15%] | Avg time/run: 7m 28s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 10h 34m 40s (finishing around )
+Sun Aug 10 20:24:59 PDT 2025: Starting run 16
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 16 completed successfully in 5m 50s
+  Best Model: BalancedRF_Default
+  AUC ROC: 0.6145
+  Recall (Class 0): 0.6180
+  Recall (Class 1): 0.6667
+Sun Aug 10 20:30:49 PDT 2025: Completed run 16
+
+--- Running Experiment 17/100 [16%] ---
+Progress: [16%] | Avg time/run: 7m 21s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 10h 17m 24s (finishing around )
+Sun Aug 10 20:30:49 PDT 2025: Starting run 17
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 17 completed successfully in 5m 59s
+  Best Model: LR_Balanced_BorderlineSMOTE
+  AUC ROC: 0.8111
+  Recall (Class 0): 0.6030
+  Recall (Class 1): 1.0000
+Sun Aug 10 20:36:48 PDT 2025: Completed run 17
+
+--- Running Experiment 18/100 [17%] ---
+Progress: [17%] | Avg time/run: 7m 17s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 10h 4m 31s (finishing around )
+Sun Aug 10 20:36:48 PDT 2025: Starting run 18
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 18 completed successfully in 5m 46s
+  Best Model: BalancedRF_Small
+  AUC ROC: 0.7058
+  Recall (Class 0): 0.6705
+  Recall (Class 1): 0.7778
+Sun Aug 10 20:42:34 PDT 2025: Completed run 18
+
+--- Running Experiment 19/100 [18%] ---
+Progress: [18%] | Avg time/run: 7m 11s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 9h 49m 2s (finishing around )
+Sun Aug 10 20:42:34 PDT 2025: Starting run 19
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 19 completed successfully in 5m 49s
+  Best Model: EasyEnsemble_Default
+  AUC ROC: 0.6046
+  Recall (Class 0): 0.7340
+  Recall (Class 1): 0.5556
+Sun Aug 10 20:48:23 PDT 2025: Completed run 19
+
+--- Running Experiment 20/100 [19%] ---
+Progress: [19%] | Avg time/run: 7m 7s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 9h 36m 27s (finishing around )
+Sun Aug 10 20:48:23 PDT 2025: Starting run 20
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 20 completed successfully in 5m 46s
+  Best Model: BalancedRF_Small
+  AUC ROC: 0.7515
+  Recall (Class 0): 0.5824
+  Recall (Class 1): 0.8889
+Sun Aug 10 20:54:09 PDT 2025: Completed run 20
+
+--- Running Experiment 21/100 [20%] ---
+Progress: [20%] | Avg time/run: 7m 3s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 9h 24m 0s (finishing around )
+Sun Aug 10 20:54:09 PDT 2025: Starting run 21
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 21 completed successfully in 5m 49s
+  Best Model: LR_Balanced_ADASYN
+  AUC ROC: 0.4736
+  Recall (Class 0): 0.1639
+  Recall (Class 1): 0.8889
+Sun Aug 10 20:59:58 PDT 2025: Completed run 21
+
+--- Running Experiment 22/100 [21%] ---
+Progress: [21%] | Avg time/run: 6m 59s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 9h 11m 41s (finishing around )
+Sun Aug 10 20:59:58 PDT 2025: Starting run 22
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 22 completed successfully in 5m 47s
+  Best Model: EasyEnsemble_Default
+  AUC ROC: 0.6855
+  Recall (Class 0): 0.4809
+  Recall (Class 1): 0.8889
+Sun Aug 10 21:05:45 PDT 2025: Completed run 22
+
+--- Running Experiment 23/100 [22%] ---
+Progress: [22%] | Avg time/run: 6m 56s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 9h 0m 48s (finishing around )
+Sun Aug 10 21:05:45 PDT 2025: Starting run 23
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 23 completed successfully in 5m 51s
+  Best Model: BalancedRF_AllFeatures
+  AUC ROC: 0.7138
+  Recall (Class 0): 0.6393
+  Recall (Class 1): 0.7500
+Sun Aug 10 21:11:36 PDT 2025: Completed run 23
+
+--- Running Experiment 24/100 [23%] ---
+Progress: [23%] | Avg time/run: 6m 53s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 8h 50m 1s (finishing around )
+Sun Aug 10 21:11:36 PDT 2025: Starting run 24
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 24 completed successfully in 5m 52s
+  Best Model: EasyEnsemble_Medium
+  AUC ROC: 0.5507
+  Recall (Class 0): 0.7486
+  Recall (Class 1): 0.4444
+Sun Aug 10 21:17:28 PDT 2025: Completed run 24
+
+--- Running Experiment 25/100 [24%] ---
+Progress: [24%] | Avg time/run: 6m 51s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 8h 40m 36s (finishing around )
+Sun Aug 10 21:17:28 PDT 2025: Starting run 25
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 25 completed successfully in 6m 3s
+  Best Model: BalancedBagging_Default
+  AUC ROC: 0.6420
+  Recall (Class 0): 0.4726
+  Recall (Class 1): 0.9000
+Sun Aug 10 21:23:31 PDT 2025: Completed run 25
+
+--- Running Experiment 26/100 [25%] ---
+Progress: [25%] | Avg time/run: 6m 49s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 8h 31m 15s (finishing around )
+Sun Aug 10 21:23:31 PDT 2025: Starting run 26
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 26 completed successfully in 5m 51s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.6802
+  Recall (Class 0): 0.9613
+  Recall (Class 1): 0.4444
+Sun Aug 10 21:29:22 PDT 2025: Completed run 26
+
+--- Running Experiment 27/100 [26%] ---
+Progress: [26%] | Avg time/run: 6m 47s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 8h 21m 58s (finishing around )
+Sun Aug 10 21:29:22 PDT 2025: Starting run 27
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 27 completed successfully in 5m 52s
+  Best Model: LR_Balanced_SMOTEENN
+  AUC ROC: 0.7129
+  Recall (Class 0): 0.6919
+  Recall (Class 1): 0.7778
+Sun Aug 10 21:35:14 PDT 2025: Completed run 27
+
+--- Running Experiment 28/100 [27%] ---
+Progress: [27%] | Avg time/run: 6m 45s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 8h 12m 45s (finishing around )
+Sun Aug 10 21:35:14 PDT 2025: Starting run 28
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 28 completed successfully in 5m 52s
+  Best Model: LR_Balanced_ADASYN
+  AUC ROC: 0.6384
+  Recall (Class 0): 0.5514
+  Recall (Class 1): 0.7778
+Sun Aug 10 21:41:06 PDT 2025: Completed run 28
+
+--- Running Experiment 29/100 [28%] ---
+Progress: [28%] | Avg time/run: 6m 43s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 8h 3m 36s (finishing around )
+Sun Aug 10 21:41:06 PDT 2025: Starting run 29
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 29 completed successfully in 5m 49s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.7668
+  Recall (Class 0): 0.6557
+  Recall (Class 1): 0.8889
+Sun Aug 10 21:46:55 PDT 2025: Completed run 29
+
+--- Running Experiment 30/100 [29%] ---
+Progress: [29%] | Avg time/run: 6m 41s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 7h 54m 31s (finishing around )
+Sun Aug 10 21:46:55 PDT 2025: Starting run 30
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 30 completed successfully in 5m 48s
+  Best Model: EasyEnsemble_Medium
+  AUC ROC: 0.7814
+  Recall (Class 0): 0.4731
+  Recall (Class 1): 1.0000
+Sun Aug 10 21:52:43 PDT 2025: Completed run 30
+
+--- Running Experiment 31/100 [30%] ---
+Progress: [30%] | Avg time/run: 6m 39s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 7h 45m 30s (finishing around )
+Sun Aug 10 21:52:43 PDT 2025: Starting run 31
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 31 completed successfully in 5m 41s
+  Best Model: BalancedBagging_Default
+  AUC ROC: 0.7453
+  Recall (Class 0): 0.8713
+  Recall (Class 1): 0.5556
+Sun Aug 10 21:58:24 PDT 2025: Completed run 31
+
+--- Running Experiment 32/100 [31%] ---
+Progress: [31%] | Avg time/run: 6m 37s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 7h 36m 33s (finishing around )
+Sun Aug 10 21:58:24 PDT 2025: Starting run 32
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 32 completed successfully in 5m 52s
+  Best Model: BalancedRF_Default
+  AUC ROC: 0.6311
+  Recall (Class 0): 0.4754
+  Recall (Class 1): 0.8889
+Sun Aug 10 22:04:16 PDT 2025: Completed run 32
+
+--- Running Experiment 33/100 [32%] ---
+Progress: [32%] | Avg time/run: 6m 36s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 7h 28m 48s (finishing around )
+Sun Aug 10 22:04:16 PDT 2025: Starting run 33
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 33 completed successfully in 6m 1s
+  Best Model: EasyEnsemble_Default
+  AUC ROC: 0.6495
+  Recall (Class 0): 0.8950
+  Recall (Class 1): 0.4000
+Sun Aug 10 22:10:17 PDT 2025: Completed run 33
+
+--- Running Experiment 34/100 [33%] ---
+Progress: [33%] | Avg time/run: 6m 35s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 7h 21m 5s (finishing around )
+Sun Aug 10 22:10:17 PDT 2025: Starting run 34
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 34 completed successfully in 5m 52s
+  Best Model: BalancedRF_Default
+  AUC ROC: 0.7284
+  Recall (Class 0): 0.4202
+  Recall (Class 1): 1.0000
+Sun Aug 10 22:16:09 PDT 2025: Completed run 34
+
+--- Running Experiment 35/100 [34%] ---
+Progress: [34%] | Avg time/run: 6m 33s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 7h 12m 18s (finishing around )
+Sun Aug 10 22:16:09 PDT 2025: Starting run 35
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 35 completed successfully in 5m 57s
+  Best Model: BalancedRF_Log2
+  AUC ROC: 0.6160
+  Recall (Class 0): 0.4200
+  Recall (Class 1): 0.9000
+Sun Aug 10 22:22:06 PDT 2025: Completed run 35
+
+--- Running Experiment 36/100 [35%] ---
+Progress: [35%] | Avg time/run: 6m 32s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 7h 4m 40s (finishing around )
+Sun Aug 10 22:22:06 PDT 2025: Starting run 36
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 36 completed successfully in 5m 53s
+  Best Model: BalancedRF_Log2
+  AUC ROC: 0.6515
+  Recall (Class 0): 0.4124
+  Recall (Class 1): 1.0000
+Sun Aug 10 22:27:59 PDT 2025: Completed run 36
+
+--- Running Experiment 37/100 [36%] ---
+Progress: [36%] | Avg time/run: 6m 31s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 6h 57m 4s (finishing around )
+Sun Aug 10 22:27:59 PDT 2025: Starting run 37
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 37 completed successfully in 5m 52s
+  Best Model: EasyEnsemble_Default
+  AUC ROC: 0.5562
+  Recall (Class 0): 0.4590
+  Recall (Class 1): 0.7778
+Sun Aug 10 22:33:51 PDT 2025: Completed run 37
+
+--- Running Experiment 38/100 [37%] ---
+Progress: [37%] | Avg time/run: 6m 30s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 6h 49m 30s (finishing around )
+Sun Aug 10 22:33:51 PDT 2025: Starting run 38
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 38 completed successfully in 6m 4s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.5980
+  Recall (Class 0): 0.8950
+  Recall (Class 1): 0.4000
+Sun Aug 10 22:39:55 PDT 2025: Completed run 38
+
+--- Running Experiment 39/100 [38%] ---
+Progress: [38%] | Avg time/run: 6m 29s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 6h 41m 58s (finishing around )
+Sun Aug 10 22:39:55 PDT 2025: Starting run 39
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 39 completed successfully in 6m 3s
+  Best Model: EasyEnsemble_Medium
+  AUC ROC: 0.6395
+  Recall (Class 0): 0.4190
+  Recall (Class 1): 0.9000
+Sun Aug 10 22:45:58 PDT 2025: Completed run 39
+
+--- Running Experiment 40/100 [39%] ---
+Progress: [39%] | Avg time/run: 6m 29s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 6h 35m 29s (finishing around )
+Sun Aug 10 22:45:58 PDT 2025: Starting run 40
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 40 completed successfully in 5m 57s
+  Best Model: EasyEnsemble_Small
+  AUC ROC: 0.5925
+  Recall (Class 0): 0.7136
+  Recall (Class 1): 0.5000
+Sun Aug 10 22:51:55 PDT 2025: Completed run 40
+
+--- Running Experiment 41/100 [40%] ---
+Progress: [40%] | Avg time/run: 6m 28s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 6h 28m 0s (finishing around )
+Sun Aug 10 22:51:55 PDT 2025: Starting run 41
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 41 completed successfully in 5m 50s
+  Best Model: BalancedRF_Small
+  AUC ROC: 0.7611
+  Recall (Class 0): 0.5215
+  Recall (Class 1): 1.0000
+Sun Aug 10 22:57:45 PDT 2025: Completed run 41
+
+--- Running Experiment 42/100 [41%] ---
+Progress: [41%] | Avg time/run: 6m 27s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 6h 20m 33s (finishing around )
+Sun Aug 10 22:57:45 PDT 2025: Starting run 42
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 42 completed successfully in 5m 52s
+  Best Model: KNN_Large_SMOTEENN
+  AUC ROC: 0.6174
+  Recall (Class 0): 0.5899
+  Recall (Class 1): 0.6667
+Sun Aug 10 23:03:37 PDT 2025: Completed run 42
+
+--- Running Experiment 43/100 [42%] ---
+Progress: [42%] | Avg time/run: 6m 26s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 6h 13m 8s (finishing around )
+Sun Aug 10 23:03:37 PDT 2025: Starting run 43
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 43 completed successfully in 9s
+⚠ Warning: Could not extract all metrics from run 43
+  AUC: '', Recall0: '', Recall1: '', Model: ''
+Sun Aug 10 23:03:46 PDT 2025: Completed run 43
+
+--- Running Experiment 44/100 [43%] ---
+Progress: [43%] | Avg time/run: 6m 17s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 5h 58m 9s (finishing around )
+Sun Aug 10 23:03:46 PDT 2025: Starting run 44
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 44 completed successfully in 5m 52s
+  Best Model: BalancedBagging_HighSample
+  AUC ROC: 0.6040
+  Recall (Class 0): 0.2581
+  Recall (Class 1): 1.0000
+Sun Aug 10 23:09:38 PDT 2025: Completed run 44
+
+--- Running Experiment 45/100 [44%] ---
+Progress: [44%] | Avg time/run: 6m 17s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 5h 51m 52s (finishing around )
+Sun Aug 10 23:09:39 PDT 2025: Starting run 45
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 45 completed successfully in 5m 45s
+  Best Model: BalancedBagging_Default
+  AUC ROC: 0.6256
+  Recall (Class 0): 0.8035
+  Recall (Class 1): 0.4444
+Sun Aug 10 23:15:24 PDT 2025: Completed run 45
+
+--- Running Experiment 46/100 [45%] ---
+Progress: [45%] | Avg time/run: 6m 16s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 5h 44m 40s (finishing around )
+Sun Aug 10 23:15:24 PDT 2025: Starting run 46
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 46 completed successfully in 5m 51s
+  Best Model: EasyEnsemble_Small
+  AUC ROC: 0.7554
+  Recall (Class 0): 0.7090
+  Recall (Class 1): 0.7778
+Sun Aug 10 23:21:15 PDT 2025: Completed run 46
+
+--- Running Experiment 47/100 [46%] ---
+Progress: [46%] | Avg time/run: 6m 16s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 5h 38m 24s (finishing around )
+Sun Aug 10 23:21:15 PDT 2025: Starting run 47
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 47 completed successfully in 5m 46s
+  Best Model: EasyEnsemble_Default
+  AUC ROC: 0.7121
+  Recall (Class 0): 0.7901
+  Recall (Class 1): 0.5556
+Sun Aug 10 23:27:01 PDT 2025: Completed run 47
+
+--- Running Experiment 48/100 [47%] ---
+Progress: [47%] | Avg time/run: 6m 15s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 5h 31m 15s (finishing around )
+Sun Aug 10 23:27:01 PDT 2025: Starting run 48
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 48 completed successfully in 5m 52s
+  Best Model: EasyEnsemble_Medium
+  AUC ROC: 0.5591
+  Recall (Class 0): 0.5989
+  Recall (Class 1): 0.6250
+Sun Aug 10 23:32:53 PDT 2025: Completed run 48
+
+--- Running Experiment 49/100 [48%] ---
+Progress: [48%] | Avg time/run: 6m 14s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 5h 24m 8s (finishing around )
+Sun Aug 10 23:32:53 PDT 2025: Starting run 49
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 49 completed successfully in 5m 48s
+  Best Model: LR_Balanced_ADASYN
+  AUC ROC: 0.8059
+  Recall (Class 0): 0.5989
+  Recall (Class 1): 1.0000
+Sun Aug 10 23:38:41 PDT 2025: Completed run 49
+
+--- Running Experiment 50/100 [49%] ---
+Progress: [49%] | Avg time/run: 6m 14s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 5h 17m 54s (finishing around )
+Sun Aug 10 23:38:41 PDT 2025: Starting run 50
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 50 completed successfully in 5m 47s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.5910
+  Recall (Class 0): 0.6319
+  Recall (Class 1): 0.5556
+Sun Aug 10 23:44:28 PDT 2025: Completed run 50
+
+--- Running Experiment 51/100 [50%] ---
+Progress: [50%] | Avg time/run: 6m 13s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 5h 10m 50s (finishing around )
+Sun Aug 10 23:44:28 PDT 2025: Starting run 51
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 51 completed successfully in 5m 47s
+  Best Model: BalancedRF_AllFeatures
+  AUC ROC: 0.5337
+  Recall (Class 0): 0.3661
+  Recall (Class 1): 1.0000
+Sun Aug 10 23:50:15 PDT 2025: Completed run 51
+
+--- Running Experiment 52/100 [51%] ---
+Progress: [51%] | Avg time/run: 6m 13s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 5h 4m 37s (finishing around )
+Sun Aug 10 23:50:16 PDT 2025: Starting run 52
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 52 completed successfully in 5m 43s
+  Best Model: BalancedRF_Default
+  AUC ROC: 0.8009
+  Recall (Class 0): 0.7584
+  Recall (Class 1): 0.7500
+Sun Aug 10 23:55:59 PDT 2025: Completed run 52
+
+--- Running Experiment 53/100 [52%] ---
+Progress: [52%] | Avg time/run: 6m 12s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 4h 57m 36s (finishing around )
+Sun Aug 10 23:55:59 PDT 2025: Starting run 53
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 53 completed successfully in 5m 45s
+  Best Model: BalancedBagging_Small
+  AUC ROC: 0.5578
+  Recall (Class 0): 0.7500
+  Recall (Class 1): 0.5556
+Mon Aug 11 00:01:44 PDT 2025: Completed run 53
+
+--- Running Experiment 54/100 [53%] ---
+Progress: [53%] | Avg time/run: 6m 12s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 4h 51m 24s (finishing around )
+Mon Aug 11 00:01:44 PDT 2025: Starting run 54
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 54 completed successfully in 5m 38s
+  Best Model: BalancedRF_Large
+  AUC ROC: 0.7950
+  Recall (Class 0): 0.7232
+  Recall (Class 1): 0.8889
+Mon Aug 11 00:07:22 PDT 2025: Completed run 54
+
+--- Running Experiment 55/100 [54%] ---
+Progress: [54%] | Avg time/run: 6m 11s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 4h 44m 26s (finishing around )
+Mon Aug 11 00:07:22 PDT 2025: Starting run 55
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 55 completed successfully in 5m 56s
+  Best Model: BalancedBagging_HighSample
+  AUC ROC: 0.5454
+  Recall (Class 0): 0.5408
+  Recall (Class 1): 0.7000
+Mon Aug 11 00:13:18 PDT 2025: Completed run 55
+
+--- Running Experiment 56/100 [55%] ---
+Progress: [55%] | Avg time/run: 6m 11s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 4h 38m 15s (finishing around )
+Mon Aug 11 00:13:18 PDT 2025: Starting run 56
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 56 completed successfully in 5m 51s
+  Best Model: EasyEnsemble_Medium
+  AUC ROC: 0.6333
+  Recall (Class 0): 0.8470
+  Recall (Class 1): 0.4444
+Mon Aug 11 00:19:09 PDT 2025: Completed run 56
+
+--- Running Experiment 57/100 [56%] ---
+Progress: [56%] | Avg time/run: 6m 10s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 4h 31m 20s (finishing around )
+Mon Aug 11 00:19:09 PDT 2025: Starting run 57
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 57 completed successfully in 5m 53s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.7678
+  Recall (Class 0): 0.7950
+  Recall (Class 1): 0.6667
+Mon Aug 11 00:25:02 PDT 2025: Completed run 57
+
+--- Running Experiment 58/100 [57%] ---
+Progress: [57%] | Avg time/run: 6m 10s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 4h 25m 10s (finishing around )
+Mon Aug 11 00:25:02 PDT 2025: Starting run 58
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 58 completed successfully in 5m 42s
+  Best Model: BalancedRF_AllFeatures
+  AUC ROC: 0.7407
+  Recall (Class 0): 0.8033
+  Recall (Class 1): 0.6667
+Mon Aug 11 00:30:44 PDT 2025: Completed run 58
+
+--- Running Experiment 59/100 [58%] ---
+Progress: [58%] | Avg time/run: 6m 10s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 4h 19m 0s (finishing around )
+Mon Aug 11 00:30:44 PDT 2025: Starting run 59
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 59 completed successfully in 5m 52s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.6619
+  Recall (Class 0): 0.9255
+  Recall (Class 1): 0.4444
+Mon Aug 11 00:36:36 PDT 2025: Completed run 59
+
+--- Running Experiment 60/100 [59%] ---
+Progress: [59%] | Avg time/run: 6m 9s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 4h 12m 9s (finishing around )
+Mon Aug 11 00:36:36 PDT 2025: Starting run 60
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 60 completed successfully in 5m 46s
+  Best Model: EasyEnsemble_Small
+  AUC ROC: 0.6868
+  Recall (Class 0): 0.8362
+  Recall (Class 1): 0.5556
+Mon Aug 11 00:42:22 PDT 2025: Completed run 60
+
+--- Running Experiment 61/100 [60%] ---
+Progress: [60%] | Avg time/run: 6m 9s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 4h 6m 0s (finishing around )
+Mon Aug 11 00:42:22 PDT 2025: Starting run 61
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 61 completed successfully in 5m 45s
+  Best Model: LR_Balanced_SVMSMOTE
+  AUC ROC: 0.6841
+  Recall (Class 0): 0.4663
+  Recall (Class 1): 0.8889
+Mon Aug 11 00:48:07 PDT 2025: Completed run 61
+
+--- Running Experiment 62/100 [61%] ---
+Progress: [61%] | Avg time/run: 6m 8s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 3h 59m 12s (finishing around )
+Mon Aug 11 00:48:07 PDT 2025: Starting run 62
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 62 completed successfully in 5m 46s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.6740
+  Recall (Class 0): 0.6484
+  Recall (Class 1): 0.8889
+Mon Aug 11 00:53:53 PDT 2025: Completed run 62
+
+--- Running Experiment 63/100 [62%] ---
+Progress: [62%] | Avg time/run: 6m 8s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 3h 53m 4s (finishing around )
+Mon Aug 11 00:53:53 PDT 2025: Starting run 63
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 63 completed successfully in 5m 47s
+  Best Model: BalancedRF_Conservative
+  AUC ROC: 0.7909
+  Recall (Class 0): 0.6344
+  Recall (Class 1): 0.9000
+Mon Aug 11 00:59:40 PDT 2025: Completed run 63
+
+--- Running Experiment 64/100 [63%] ---
+Progress: [63%] | Avg time/run: 6m 8s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 3h 46m 56s (finishing around )
+Mon Aug 11 00:59:40 PDT 2025: Starting run 64
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 64 completed successfully in 5m 48s
+  Best Model: EasyEnsemble_Medium
+  AUC ROC: 0.6084
+  Recall (Class 0): 0.7784
+  Recall (Class 1): 0.5556
+Mon Aug 11 01:05:28 PDT 2025: Completed run 64
+
+--- Running Experiment 65/100 [64%] ---
+Progress: [64%] | Avg time/run: 6m 7s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 3h 40m 12s (finishing around )
+Mon Aug 11 01:05:28 PDT 2025: Starting run 65
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 65 completed successfully in 5m 53s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.6407
+  Recall (Class 0): 0.4623
+  Recall (Class 1): 0.8000
+Mon Aug 11 01:11:21 PDT 2025: Completed run 65
+
+--- Running Experiment 66/100 [65%] ---
+Progress: [65%] | Avg time/run: 6m 7s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 3h 34m 5s (finishing around )
+Mon Aug 11 01:11:21 PDT 2025: Starting run 66
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 66 completed successfully in 5m 58s
+  Best Model: BalancedRF_Small
+  AUC ROC: 0.4403
+  Recall (Class 0): 0.6071
+  Recall (Class 1): 0.5000
+Mon Aug 11 01:17:19 PDT 2025: Completed run 66
+
+--- Running Experiment 67/100 [66%] ---
+Progress: [66%] | Avg time/run: 6m 7s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 3h 27m 58s (finishing around )
+Mon Aug 11 01:17:19 PDT 2025: Starting run 67
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 67 completed successfully in 5m 45s
+  Best Model: BalancedBagging_Default
+  AUC ROC: 0.5886
+  Recall (Class 0): 0.8146
+  Recall (Class 1): 0.5556
+Mon Aug 11 01:23:04 PDT 2025: Completed run 67
+
+--- Running Experiment 68/100 [67%] ---
+Progress: [67%] | Avg time/run: 6m 7s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 3h 21m 51s (finishing around )
+Mon Aug 11 01:23:04 PDT 2025: Starting run 68
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 68 completed successfully in 5m 43s
+  Best Model: BalancedRF_AllFeatures
+  AUC ROC: 0.5925
+  Recall (Class 0): 0.3039
+  Recall (Class 1): 1.0000
+Mon Aug 11 01:28:47 PDT 2025: Completed run 68
+
+--- Running Experiment 69/100 [68%] ---
+Progress: [68%] | Avg time/run: 6m 6s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 3h 15m 12s (finishing around )
+Mon Aug 11 01:28:47 PDT 2025: Starting run 69
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 69 completed successfully in 5m 53s
+  Best Model: EasyEnsemble_Medium
+  AUC ROC: 0.6475
+  Recall (Class 0): 0.8300
+  Recall (Class 1): 0.5000
+Mon Aug 11 01:34:40 PDT 2025: Completed run 69
+
+--- Running Experiment 70/100 [69%] ---
+Progress: [69%] | Avg time/run: 6m 6s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 3h 9m 6s (finishing around )
+Mon Aug 11 01:34:40 PDT 2025: Starting run 70
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 70 completed successfully in 5m 48s
+  Best Model: KNN_Minkowski_SMOTEENN
+  AUC ROC: 0.6298
+  Recall (Class 0): 0.4011
+  Recall (Class 1): 0.8889
+Mon Aug 11 01:40:28 PDT 2025: Completed run 70
+
+--- Running Experiment 71/100 [70%] ---
+Progress: [70%] | Avg time/run: 6m 6s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 3h 3m 0s (finishing around )
+Mon Aug 11 01:40:28 PDT 2025: Starting run 71
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 71 completed successfully in 5m 58s
+  Best Model: LR_Balanced_SMOTETomek
+  AUC ROC: 0.5862
+  Recall (Class 0): 0.2821
+  Recall (Class 1): 1.0000
+Mon Aug 11 01:46:26 PDT 2025: Completed run 71
+
+--- Running Experiment 72/100 [71%] ---
+Progress: [71%] | Avg time/run: 6m 6s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 2h 56m 54s (finishing around )
+Mon Aug 11 01:46:26 PDT 2025: Starting run 72
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 72 completed successfully in 5m 48s
+  Best Model: BalancedBagging_HighSample
+  AUC ROC: 0.7257
+  Recall (Class 0): 0.7416
+  Recall (Class 1): 0.7778
+Mon Aug 11 01:52:14 PDT 2025: Completed run 72
+
+--- Running Experiment 73/100 [72%] ---
+Progress: [72%] | Avg time/run: 6m 6s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 2h 50m 48s (finishing around )
+Mon Aug 11 01:52:14 PDT 2025: Starting run 73
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 73 completed successfully in 5m 51s
+  Best Model: BalancedBagging_HighSample
+  AUC ROC: 0.4846
+  Recall (Class 0): 0.3102
+  Recall (Class 1): 0.7778
+Mon Aug 11 01:58:05 PDT 2025: Completed run 73
+
+--- Running Experiment 74/100 [73%] ---
+Progress: [73%] | Avg time/run: 6m 5s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 2h 44m 15s (finishing around )
+Mon Aug 11 01:58:05 PDT 2025: Starting run 74
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 74 completed successfully in 6m 10s
+  Best Model: BalancedRF_Large
+  AUC ROC: 0.5903
+  Recall (Class 0): 0.5531
+  Recall (Class 1): 0.7778
+Mon Aug 11 02:04:15 PDT 2025: Completed run 74
+
+--- Running Experiment 75/100 [74%] ---
+Progress: [74%] | Avg time/run: 6m 5s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 2h 38m 10s (finishing around )
+Mon Aug 11 02:04:15 PDT 2025: Starting run 75
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 75 completed successfully in 5m 55s
+  Best Model: KNN_Large_SMOTEENN
+  AUC ROC: 0.6753
+  Recall (Class 0): 0.6082
+  Recall (Class 1): 0.7000
+Mon Aug 11 02:10:10 PDT 2025: Completed run 75
+
+--- Running Experiment 76/100 [75%] ---
+Progress: [75%] | Avg time/run: 6m 5s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 2h 32m 5s (finishing around )
+Mon Aug 11 02:10:10 PDT 2025: Starting run 76
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 76 completed successfully in 5m 46s
+  Best Model: BalancedBagging_HighSample
+  AUC ROC: 0.7139
+  Recall (Class 0): 0.7889
+  Recall (Class 1): 0.6667
+Mon Aug 11 02:15:56 PDT 2025: Completed run 76
+
+--- Running Experiment 77/100 [76%] ---
+Progress: [76%] | Avg time/run: 6m 5s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 2h 26m 0s (finishing around )
+Mon Aug 11 02:15:56 PDT 2025: Starting run 77
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 77 completed successfully in 5m 49s
+  Best Model: BalancedRF_AllFeatures
+  AUC ROC: 0.6696
+  Recall (Class 0): 0.7594
+  Recall (Class 1): 0.5556
+Mon Aug 11 02:21:45 PDT 2025: Completed run 77
+
+--- Running Experiment 78/100 [77%] ---
+Progress: [77%] | Avg time/run: 6m 5s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 2h 19m 55s (finishing around )
+Mon Aug 11 02:21:45 PDT 2025: Starting run 78
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 78 completed successfully in 5m 39s
+  Best Model: EasyEnsemble_Small
+  AUC ROC: 0.6745
+  Recall (Class 0): 0.8598
+  Recall (Class 1): 0.5000
+Mon Aug 11 02:27:24 PDT 2025: Completed run 78
+
+--- Running Experiment 79/100 [78%] ---
+Progress: [78%] | Avg time/run: 6m 4s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 2h 13m 28s (finishing around )
+Mon Aug 11 02:27:24 PDT 2025: Starting run 79
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 79 completed successfully in 5m 50s
+  Best Model: BalancedRF_Conservative
+  AUC ROC: 0.7168
+  Recall (Class 0): 0.6250
+  Recall (Class 1): 0.7778
+Mon Aug 11 02:33:14 PDT 2025: Completed run 79
+
+--- Running Experiment 80/100 [79%] ---
+Progress: [79%] | Avg time/run: 6m 4s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 2h 7m 24s (finishing around )
+Mon Aug 11 02:33:14 PDT 2025: Starting run 80
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 80 completed successfully in 5m 50s
+  Best Model: BalancedRF_Conservative
+  AUC ROC: 0.6566
+  Recall (Class 0): 0.5348
+  Recall (Class 1): 0.8889
+Mon Aug 11 02:39:04 PDT 2025: Completed run 80
+
+--- Running Experiment 81/100 [80%] ---
+Progress: [80%] | Avg time/run: 6m 4s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 2h 1m 20s (finishing around )
+Mon Aug 11 02:39:04 PDT 2025: Starting run 81
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 81 completed successfully in 5m 58s
+  Best Model: BalancedRF_Small
+  AUC ROC: 0.7898
+  Recall (Class 0): 0.8173
+  Recall (Class 1): 0.7000
+Mon Aug 11 02:45:02 PDT 2025: Completed run 81
+
+--- Running Experiment 82/100 [81%] ---
+Progress: [81%] | Avg time/run: 6m 4s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 1h 55m 16s (finishing around )
+Mon Aug 11 02:45:02 PDT 2025: Starting run 82
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 82 completed successfully in 5m 44s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.7678
+  Recall (Class 0): 0.7865
+  Recall (Class 1): 0.7778
+Mon Aug 11 02:50:46 PDT 2025: Completed run 82
+
+--- Running Experiment 83/100 [82%] ---
+Progress: [82%] | Avg time/run: 6m 4s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 1h 49m 12s (finishing around )
+Mon Aug 11 02:50:46 PDT 2025: Starting run 83
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 83 completed successfully in 5m 43s
+  Best Model: LR_Balanced_ADASYN
+  AUC ROC: 0.7303
+  Recall (Class 0): 0.6629
+  Recall (Class 1): 0.7500
+Mon Aug 11 02:56:29 PDT 2025: Completed run 83
+
+--- Running Experiment 84/100 [83%] ---
+Progress: [83%] | Avg time/run: 6m 3s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 1h 42m 51s (finishing around )
+Mon Aug 11 02:56:29 PDT 2025: Starting run 84
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 84 completed successfully in 5m 45s
+  Best Model: LR_Balanced_SMOTEENN
+  AUC ROC: 0.7247
+  Recall (Class 0): 0.6868
+  Recall (Class 1): 0.7778
+Mon Aug 11 03:02:14 PDT 2025: Completed run 84
+
+--- Running Experiment 85/100 [84%] ---
+Progress: [84%] | Avg time/run: 6m 3s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 1h 36m 48s (finishing around )
+Mon Aug 11 03:02:14 PDT 2025: Starting run 85
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 85 completed successfully in 5m 48s
+  Best Model: KNN_Minkowski_SMOTEENN
+  AUC ROC: 0.6420
+  Recall (Class 0): 0.6684
+  Recall (Class 1): 0.6667
+Mon Aug 11 03:08:02 PDT 2025: Completed run 85
+
+--- Running Experiment 86/100 [85%] ---
+Progress: [85%] | Avg time/run: 6m 3s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 1h 30m 45s (finishing around )
+Mon Aug 11 03:08:02 PDT 2025: Starting run 86
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 86 completed successfully in 5m 55s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.6395
+  Recall (Class 0): 0.6150
+  Recall (Class 1): 0.7000
+Mon Aug 11 03:13:57 PDT 2025: Completed run 86
+
+--- Running Experiment 87/100 [86%] ---
+Progress: [86%] | Avg time/run: 6m 3s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 1h 24m 42s (finishing around )
+Mon Aug 11 03:13:57 PDT 2025: Starting run 87
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 87 completed successfully in 5m 56s
+  Best Model: BalancedRF_Small
+  AUC ROC: 0.6190
+  Recall (Class 0): 0.5900
+  Recall (Class 1): 0.7000
+Mon Aug 11 03:19:53 PDT 2025: Completed run 87
+
+--- Running Experiment 88/100 [87%] ---
+Progress: [87%] | Avg time/run: 6m 3s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 1h 18m 39s (finishing around )
+Mon Aug 11 03:19:53 PDT 2025: Starting run 88
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 88 completed successfully in 5m 47s
+  Best Model: BalancedBagging_Default
+  AUC ROC: 0.5650
+  Recall (Class 0): 0.8142
+  Recall (Class 1): 0.5556
+Mon Aug 11 03:25:40 PDT 2025: Completed run 88
+
+--- Running Experiment 89/100 [88%] ---
+Progress: [88%] | Avg time/run: 6m 3s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 1h 12m 36s (finishing around )
+Mon Aug 11 03:25:40 PDT 2025: Starting run 89
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 89 completed successfully in 5m 44s
+  Best Model: BalancedBagging_Large
+  AUC ROC: 0.7611
+  Recall (Class 0): 0.7258
+  Recall (Class 1): 0.7778
+Mon Aug 11 03:31:24 PDT 2025: Completed run 89
+
+--- Running Experiment 90/100 [89%] ---
+Progress: [89%] | Avg time/run: 6m 2s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 1h 6m 22s (finishing around )
+Mon Aug 11 03:31:24 PDT 2025: Starting run 90
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 90 completed successfully in 5m 48s
+  Best Model: BalancedBagging_Default
+  AUC ROC: 0.6590
+  Recall (Class 0): 0.6011
+  Recall (Class 1): 0.7778
+Mon Aug 11 03:37:12 PDT 2025: Completed run 90
+
+--- Running Experiment 91/100 [90%] ---
+Progress: [90%] | Avg time/run: 6m 2s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 1h 0m 20s (finishing around )
+Mon Aug 11 03:37:12 PDT 2025: Starting run 91
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 91 completed successfully in 5m 56s
+  Best Model: LR_Balanced_SVMSMOTE
+  AUC ROC: 0.6270
+  Recall (Class 0): 0.4450
+  Recall (Class 1): 0.9000
+Mon Aug 11 03:43:08 PDT 2025: Completed run 91
+
+--- Running Experiment 92/100 [91%] ---
+Progress: [91%] | Avg time/run: 6m 2s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 54m 18s (finishing around )
+Mon Aug 11 03:43:08 PDT 2025: Starting run 92
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 92 completed successfully in 5m 46s
+  Best Model: LR_Balanced_ADASYN
+  AUC ROC: 0.5741
+  Recall (Class 0): 0.8167
+  Recall (Class 1): 0.4444
+Mon Aug 11 03:48:54 PDT 2025: Completed run 92
+
+--- Running Experiment 93/100 [92%] ---
+Progress: [92%] | Avg time/run: 6m 2s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 48m 16s (finishing around )
+Mon Aug 11 03:48:54 PDT 2025: Starting run 93
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 93 completed successfully in 5m 53s
+  Best Model: BalancedRF_Small
+  AUC ROC: 0.5644
+  Recall (Class 0): 0.7766
+  Recall (Class 1): 0.4444
+Mon Aug 11 03:54:47 PDT 2025: Completed run 93
+
+--- Running Experiment 94/100 [93%] ---
+Progress: [93%] | Avg time/run: 6m 2s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 42m 14s (finishing around )
+Mon Aug 11 03:54:47 PDT 2025: Starting run 94
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 94 completed successfully in 5m 50s
+  Best Model: EasyEnsemble_Small
+  AUC ROC: 0.5762
+  Recall (Class 0): 0.3169
+  Recall (Class 1): 0.8889
+Mon Aug 11 04:00:37 PDT 2025: Completed run 94
+
+--- Running Experiment 95/100 [94%] ---
+Progress: [94%] | Avg time/run: 6m 2s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 36m 12s (finishing around )
+Mon Aug 11 04:00:37 PDT 2025: Starting run 95
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 95 completed successfully in 5m 55s
+  Best Model: EasyEnsemble_Large
+  AUC ROC: 0.6055
+  Recall (Class 0): 0.6900
+  Recall (Class 1): 0.6000
+Mon Aug 11 04:06:32 PDT 2025: Completed run 95
+
+--- Running Experiment 96/100 [95%] ---
+Progress: [95%] | Avg time/run: 6m 2s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 30m 10s (finishing around )
+Mon Aug 11 04:06:32 PDT 2025: Starting run 96
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 96 completed successfully in 5m 41s
+  Best Model: EasyEnsemble_Default
+  AUC ROC: 0.7122
+  Recall (Class 0): 0.7303
+  Recall (Class 1): 0.6667
+Mon Aug 11 04:12:13 PDT 2025: Completed run 96
+
+--- Running Experiment 97/100 [96%] ---
+Progress: [96%] | Avg time/run: 6m 2s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 24m 8s (finishing around )
+Mon Aug 11 04:12:13 PDT 2025: Starting run 97
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 97 completed successfully in 5m 46s
+  Best Model: BalancedBagging_HighSample
+  AUC ROC: 0.7538
+  Recall (Class 0): 0.7569
+  Recall (Class 1): 0.7778
+Mon Aug 11 04:17:59 PDT 2025: Completed run 97
+
+--- Running Experiment 98/100 [97%] ---
+Progress: [97%] | Avg time/run: 6m 1s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 18m 3s (finishing around )
+Mon Aug 11 04:17:59 PDT 2025: Starting run 98
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 98 completed successfully in 5m 49s
+  Best Model: BalancedBagging_Small
+  AUC ROC: 0.6422
+  Recall (Class 0): 0.5385
+  Recall (Class 1): 0.8889
+Mon Aug 11 04:23:48 PDT 2025: Completed run 98
+
+--- Running Experiment 99/100 [98%] ---
+Progress: [98%] | Avg time/run: 6m 1s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 12m 2s (finishing around )
+Mon Aug 11 04:23:48 PDT 2025: Starting run 99
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 99 completed successfully in 5m 39s
+  Best Model: EasyEnsemble_Small
+  AUC ROC: 0.6597
+  Recall (Class 0): 0.4400
+  Recall (Class 1): 0.8889
+Mon Aug 11 04:29:27 PDT 2025: Completed run 99
+
+--- Running Experiment 100/100 [99%] ---
+Progress: [99%] | Avg time/run: 6m 1s
+date: illegal option -- d
+usage: date [-jnRu] [-I[date|hours|minutes|seconds|ns]] [-f input_fmt]
+            [ -z output_zone ] [-r filename|seconds] [-v[+|-]val[y|m|w|d|H|M|S]]
+            [[[[mm]dd]HH]MM[[cc]yy][.SS] | new_date] [+output_fmt]
+ETA: 6m 1s (finishing around )
+Mon Aug 11 04:29:27 PDT 2025: Starting run 100
+Executing: python ml_pipelines_og.py
+Python process PID: 
+✓ Run 100 completed successfully in 5m 44s
+  Best Model: EasyEnsemble_Small
+  AUC ROC: 0.5880
+  Recall (Class 0): 0.5799
+  Recall (Class 1): 0.6250
+Mon Aug 11 04:35:11 PDT 2025: Completed run 100
+
+==================================
+EXPERIMENT SUMMARY
+==================================
+Total experiment time: 10h 2m 12s
+Successful runs: 99/100
+
+AUC ROC Statistics:
+  Mean: 0.6591
+  Std:  0.0826
+  Min:  0.4403
+  Max:  0.8436
+
+Recall (Class 0) Statistics:
+  Mean: 0.6244
+  Std:  0.1746
+  Min:  0.1639
+  Max:  0.9613
+
+Recall (Class 1) Statistics:
+  Mean: 0.7388
+  Std:  0.1726
+  Min:  0.4000
+  Max:  1.0000
+
+
+Timing Statistics:
+  Average run time: 361 seconds
+  Std deviation: 58 seconds
+  Fastest run: 9 seconds
+  Slowest run: 557 seconds
+
+Best Models Summary:
+  13 EasyEnsemble_Large
+  10 EasyEnsemble_Default
+   8 EasyEnsemble_Medium
+   8 BalancedRF_Small
+   8 BalancedBagging_Default
+   7 EasyEnsemble_Small
+   6 LR_Balanced_ADASYN
+   6 BalancedRF_AllFeatures
+   6 BalancedBagging_HighSample
+   5 BalancedRF_Default
+   3 BalancedRF_Large
+   3 BalancedRF_Conservative
+   2 LR_Balanced_SVMSMOTE
+   2 LR_Balanced_SMOTETomek
+   2 LR_Balanced_SMOTEENN
+   2 KNN_Minkowski_SMOTEENN
+   2 KNN_Large_SMOTEENN
+   2 BalancedRF_Log2
+   2 BalancedBagging_Small
+   1 LR_Balanced_BorderlineSMOTE
+   1 BalancedBagging_Large
+
+All outputs saved in: experiment_results/
+Summary saved in: experiment_summary.txt
+==================================
