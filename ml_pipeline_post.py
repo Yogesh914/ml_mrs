@@ -829,14 +829,14 @@ class ImprovedPTSDModel:
         
         # Models specifically good for imbalanced data
         models = {
-            'TabPFN_Default': TabPFNClassifier(
-                n_estimators=16,
-                balance_probabilities=True,
-                average_before_softmax=True,
-                fit_mode='fit_with_cache',
-                random_state=self.random_state,
-                device='cuda',
-            ),
+            # 'TabPFN_Default': TabPFNClassifier(
+            #     n_estimators=16,
+            #     balance_probabilities=True,
+            #     average_before_softmax=True,
+            #     fit_mode='fit_with_cache',
+            #     random_state=self.random_state,
+            #     device='cuda',
+            # ),
             # BalancedRandomForestClassifier variations
             'BalancedRF_Default': BalancedRandomForestClassifier(
                 n_estimators=300,
@@ -1634,59 +1634,65 @@ class ImprovedPTSDModel:
         print("IMPROVED PTSD PREDICTION MODEL - OPTIMIZED FOR RECALL")
         print("="*70)
         
-        # Load and prepare data
-        merged_df, numeric_features = self.load_data()
-        
-        # Basic preprocessing (missing values already handled in load_data)
-        X = merged_df[numeric_features].copy()
-        y = merged_df['CAPSF1I2s.0'].copy()
-        
-        # Remove missing targets (if any remain)
-        mask = ~y.isna()
-        X, y = X[mask], y[mask]
+        # Load training and test data from separate files
+        train_df, numeric_features_train = self.load_data('pre_deployment_data.pkl')
+        test_df, numeric_features_test = self.load_data('post_deployment_data_changed_ptsd.pkl')
 
-        # remove where y is not 0 or 1
-        X = X[y.isin([0, 1])]
-        y = y[y.isin([0, 1])]
-        
-        # Remove constant and highly correlated features
-        X = X.loc[:, X.nunique() > 1]
-        
-        # Remove highly correlated features
-        corr_matrix = X.corr().abs()
+        # Use features common to both, preserving training order
+        numeric_features = [f for f in numeric_features_train if f in test_df.columns]
+
+        # Prepare X/y
+        X_train_raw = train_df[numeric_features].copy()
+        y_train_raw = train_df['CAPSF1I2s.0'].copy()
+        X_test_raw = test_df[numeric_features].copy()
+        y_test_raw = test_df['CAPSF1I2s.0'].copy()
+
+        # Remove missing targets and enforce binary labels
+        mask_train = y_train_raw.notna() & y_train_raw.isin([0, 1])
+        mask_test = y_test_raw.notna() & y_test_raw.isin([0, 1])
+        X_train = X_train_raw[mask_train]
+        y_train = y_train_raw[mask_train].astype(int)
+        X_test = X_test_raw[mask_test]
+        y_test = y_test_raw[mask_test].astype(int)
+
+        print(f"Training dataset shape (pre-merge): {X_train.shape}")
+        print(f"Training class distribution: {y_train.value_counts().to_dict()}")
+        print(f"Test dataset shape (pre-merge): {X_test.shape}")
+        print(f"Test class distribution: {y_test.value_counts().to_dict()}")
+
+        # Preserve original indices to split back later
+        train_idx = X_train.index
+        test_idx = X_test.index
+
+        # Stack into a single combined dataset
+        X_all = pd.concat([X_train, X_test], axis=0)
+        y_all = pd.concat([y_train, y_test], axis=0)
+
+        # Remove constant and highly correlated features on combined data
+        X_all = X_all.loc[:, X_all.nunique() > 1]
+        corr_matrix = X_all.corr().abs()
         upper_triangle = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
         high_corr_features = [col for col in upper_triangle.columns if any(upper_triangle[col] > 0.95)]
-        X = X.drop(columns=high_corr_features)
-        
-        y = y.astype(int)
-        
-        print(f"Dataset shape: {X.shape}")
-        print(f"Class distribution: {y.value_counts().to_dict()}")
-        print(f"Class ratio: {len(y[y==1])/len(y)*100:.1f}% positive")
+        if high_corr_features:
+            X_all = X_all.drop(columns=high_corr_features)
 
-        # Remove outliers based on selected features
-        X_selected, y = self.remove_outliers(X, y)
-        
-        # Train-test split: ensure test has at least one positive sample, no balancing
-        X_train_main, X_test_main, y_train_main, y_test_main = self.stratified_train_test_split_with_min_positive(
-            X_selected, y, test_size=0.1, min_positive_test=10
-        )
+        print(f"Combined dataset shape after basic filtering: {X_all.shape}")
+        print(f"Combined class distribution: {y_all.value_counts().to_dict()}")
 
-        train_idx = X_train_main.index
-        test_idx = X_test_main.index
+        # Remove outliers on the combined data
+        X_all, y_all = self.remove_outliers(X_all, y_all)
 
-        # Combine
-        X_all = pd.concat([X_train_main, X_test_main], axis=0)
-        y_all = pd.concat([y_train_main, y_test_main], axis=0)
-
-        # Advanced feature engineering
+        # Advanced feature engineering and selection on combined data
         X_all, _ = self.advanced_feature_engineering(X_all, y_all)
-        
-        # Advanced feature selection
         X_all = self.advanced_feature_selection(X_all, y_all, n_features=25)
 
-        X_test_main = X_all.loc[test_idx]
-        X_train_main = X_all.loc[train_idx]
+        # Split back to train and test using preserved indices (only those that survived)
+        train_idx_final = train_idx.intersection(X_all.index)
+        test_idx_final = test_idx.intersection(X_all.index)
+        X_train_main = X_all.loc[train_idx_final]
+        X_test_main = X_all.loc[test_idx_final]
+        y_train_main = y_all.loc[train_idx_final]
+        y_test_main = y_all.loc[test_idx_final]
         
         traditional_results = {}
         if evaluate_traditional_models:
