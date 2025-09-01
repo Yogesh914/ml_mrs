@@ -41,8 +41,6 @@ from imblearn.pipeline import Pipeline as ImbPipeline
 from imblearn.ensemble import (BalancedRandomForestClassifier, BalancedBaggingClassifier,
                               RUSBoostClassifier, EasyEnsembleClassifier)
 import xgboost as xgb
-from tabpfn import TabPFNClassifier
-from tabpfn_extensions.post_hoc_ensembles.sklearn_interface import AutoTabPFNClassifier
 from sklearn.utils.class_weight import compute_class_weight, compute_sample_weight
 import warnings
 import os
@@ -94,9 +92,44 @@ class ImprovedPTSDModel:
                                    self.SPSS_features + self.EMG_features)
         
         print(f"Total numerical features: {len(self.all_numeric_features)}")
-        
+
         # Apply sophisticated missing value handling
-        self.merged = self._handle_missing_values(self.merged, self.all_numeric_features)
+        # self.merged = self._handle_missing_values(self.merged, self.all_numeric_features)
+        # self.merged[self.all_numeric_features] = self.merged[self.all_numeric_features].dropna()
+        # Print number of rows before and after dropna
+        rows_before = len(self.merged)
+        self.merged = self.merged[self.all_numeric_features + ['CAPSF1I2s.0']].dropna()
+        rows_after = len(self.merged)
+        rows_gone = rows_before - rows_after
+        print(f"Rows before dropna: {rows_before}")
+        print(f"Rows after dropna: {rows_after}")
+        print(f"Number of rows removed: {rows_gone}")
+
+        df = self.merged[self.all_numeric_features]
+        
+        non_numeric = df.select_dtypes(exclude=[np.number]).columns.tolist()
+        print(f"Non-numeric columns in df: {non_numeric}")
+        
+        for col in non_numeric:
+            try:
+                # Check if values contain decimal points to decide between int and float
+                sample_val = str(df[col].dropna().iloc[0]) if not df[col].dropna().empty else "0"
+                if '.' in sample_val:
+                    df[col] = pd.to_numeric(df[col], errors='coerce').astype(float)
+                    print(f"Converted df_pre['{col}'] to float")
+                else:
+                    df[col] = pd.to_numeric(df[col], errors='coerce').astype(int)
+                    print(f"Converted df_pre['{col}'] to int")
+            except Exception as e:
+                print(f"Error converting df_pre['{col}']: {e}")
+
+
+        # Verify conversion
+        print(f"\nAfter conversion:")
+        print(f"df non-numeric columns: {df.select_dtypes(exclude=[np.number]).columns.tolist()}")
+
+        for col in self.all_numeric_features:
+            self.merged[col] = df[col]
         
         return self.merged, self.all_numeric_features
     
@@ -276,14 +309,6 @@ class ImprovedPTSDModel:
 
         # First apply power transformation to X for outlier detection
         X_transformed = self.apply_power_transformation(X)
-
-        # Columns to use for outlier detection only
-        # columns_for_outliers = [
-        #     'HRV_SI', 'habituation', 'base', 'pNPY', 'HRV_MFDFA_alpha1_Delta',
-        #     'HRV_CMSEn', 'HRV_GI', 'p114_t1', 'HRV_Cd', 'sCotinine',
-        #     'HRV_MFDFA_alpha1_Asymmetry', 'p95', 'SAI_idx', 'uNE', 'sCortisol'
-        # ]
-
         cols_in_X = X_transformed.columns
 
         # Use IQR method with less aggressive thresholds on the specified columns only
@@ -713,27 +738,8 @@ class ImprovedPTSDModel:
         for idx in top_10_indices:
             print(f"  {X.columns[idx]}: {combined_scores[idx]:.4f}")
         
-        # selected_features = [
-        #     "habituation",
-        #     "HRV_GI",
-        #     "HRV_MFDFA_alpha1_Asymmetry",
-        #     "HR_5min.0_max_HRV_pNN20",
-        #     "feature_max",
-        #     "stress_load_geometric",
-        #     "p114_t1",
-        #     "HRV_MeanNN_exp_decay",
-        #     "HRV_kurtosis",
-        #     "sCortisol",
-        #     "HRV_SI",
-        #     "HRV_Cd",
-        #     "HRV_MFDFA_alpha1_Delta",
-        #     "autonomic_balance",
-        #     "uNE",
-        #     "base",
-        #     "feature_mad",
-        # ]
 
-        return X[selected_features]
+        return X[selected_features], selected_features
     
     def find_optimal_threshold(self, y_true, y_proba, metric='auc_optimal'):
         """Find optimal classification threshold optimized for AUC ROC performance
@@ -829,14 +835,6 @@ class ImprovedPTSDModel:
         
         # Models specifically good for imbalanced data
         models = {
-            'TabPFN_Default': TabPFNClassifier(
-                n_estimators=16,
-                balance_probabilities=True,
-                average_before_softmax=True,
-                fit_mode='fit_with_cache',
-                random_state=self.random_state,
-                device='cuda',
-            ),
             # BalancedRandomForestClassifier variations
             'BalancedRF_Default': BalancedRandomForestClassifier(
                 n_estimators=300,
@@ -921,49 +919,11 @@ class ImprovedPTSDModel:
                 n_estimators=15,
                 random_state=self.random_state,
             ),
-            # 'SVC_Balanced': SVC(
-            #     class_weight='balanced',
-            #     kernel='rbf',
-            #     probability=True,
-            #     break_ties=True,
-            #     random_state=self.random_state
-            # ),
-            # 'Nu_SVC': NuSVC(
-            #     class_weight='balanced',
-            #     kernel='rbf',
-            #     probability=True,
-            #     break_ties=True,
-            #     random_state=self.random_state
-            # ),
-            # 'KNN_Uniform': KNeighborsClassifier(
-            #     n_neighbors=5,
-            #     weights='uniform',
-            #     metric='euclidean',
-            # ),
-            # 'KNN_Minkowski': KNeighborsClassifier(
-            #     n_neighbors=9,
-            #     weights='distance',
-            #     metric='minkowski',
-            #     p=3,
-            # ),
-            # 'KNN_Cosine': KNeighborsClassifier(
-            #     n_neighbors=7,
-            #     weights='distance',
-            #     metric='cosine',
-            # ),
-            # 'KNN_Large': KNeighborsClassifier(
-            #     n_neighbors=15,
-            #     weights='distance',
-            #     metric='euclidean',
-            # ),
-            
         }
 
         
         # Create pipelines
         pipelines = {}
-        pipelines2 = {}
-        
         
         # Bagging and ensemble models that will also get SMOTE variations
         bagging_ensemble_models = ['BalancedBagging_Default', 'BalancedBagging_Small', 'BalancedBagging_Large',
@@ -1019,23 +979,7 @@ class ImprovedPTSDModel:
                         'classifier': model.__class__(**model.get_params()) if hasattr(model, 'get_params') else model
                     }
 
-        # Add TabPFN_Auto in a separate pipeline
-        # pipelines2['TabPFN_Auto'] = {
-        #     'scaler': RobustScaler(),
-        #     'sampler': None,
-        #     'classifier': AutoTabPFNClassifier(
-        #         max_time=300,
-        #         eval_metric='balanced_accuracy',
-        #         balance_probabilities=True,
-        #         random_state=self.random_state,
-        #         device='cuda',
-        #     )
-        # }
-        
         print(f"Created {len(pipelines)} total pipeline variations")
-        print(f"- {len(bagging_ensemble_models)} bagging/ensemble models (direct + {len(sampling_strategies_moderate)} SMOTE variations each)")
-        print(f"- {len(knn_models)} KNN models (direct + {len(sampling_strategies_full)} SMOTE variations each)")
-        print(f"- {len(other_models)} other models ({len(sampling_strategies_full)} SMOTE variations each)")
         
         return pipelines #, pipelines2
     
@@ -1179,62 +1123,7 @@ class ImprovedPTSDModel:
         
         return results
 
-    def evaluate_models_holdout(self, X_train, y_train, models, val_size=0.25):
-        """Evaluate models using a single stratified train/validation split (no cross-validation)."""
-        # Ensure we have both classes present
-        class_counts = y_train.value_counts()
-        if (class_counts < 1).any():
-            raise ValueError("Training set missing one of the classes; cannot evaluate.")
 
-        print(f"Evaluating {len(models)} models using a single stratified holdout split (val_size={val_size})...")
-
-        # Create a holdout validation split from the provided training data with at least 1 positive in val
-        X_subtrain, X_val, y_subtrain, y_val = self.stratified_train_test_split_with_min_positive(
-            X_train, y_train, test_size=val_size, min_positive_test=1
-        )
-
-        results = {}
-
-        for name, model in models.items():
-            print(f"Evaluating {name}...")
-            try:
-                # Fresh model per evaluation
-                eval_model = self._create_fresh_model(model, name)
-
-                # Fit and get validation probabilities using existing helper (handles scaling/sampling logic)
-                y_val_pred_proba = self._fit_and_predict_fold(
-                    eval_model, name, X_subtrain, y_subtrain, X_val
-                )
-
-                # Optimal threshold and metrics
-                threshold, _ = self.find_optimal_threshold(y_val, y_val_pred_proba, metric='auc_optimal')
-                y_val_pred = (y_val_pred_proba >= threshold).astype(int)
-
-                holdout_recall_1 = recall_score(y_val, y_val_pred, pos_label=1)
-                holdout_auc = roc_auc_score(y_val, y_val_pred_proba)
-                holdout_score = self._calculate_combined_score(y_val, y_val_pred_proba)
-
-                # Store in the same shape as CV results for downstream compatibility
-                results[name] = {
-                    'mean_score': holdout_score,
-                    'std_score': 0.0,
-                    'mean_recall': holdout_recall_1,
-                    'mean_auc': holdout_auc,
-                    'optimal_threshold': threshold,
-                    'cv_scores': [holdout_score],
-                    'model': model
-                }
-
-                print(
-                    f"  Score: {holdout_score:.3f} ± 0.000, "
-                    f"Recall: {holdout_recall_1:.3f}, AUC: {holdout_auc:.3f}, "
-                    f"Threshold: {threshold:.3f}"
-                )
-            except Exception as e:
-                print(f"  Error: {e}")
-                continue
-
-        return results
 
     def stratified_train_test_split_with_min_positive(self, X, y, test_size=0.2, min_positive_test=1, max_tries=50):
         """Stratified shuffle split ensuring at least a minimal number of positives in test set.
@@ -1379,225 +1268,6 @@ class ImprovedPTSDModel:
         precision_1 = precision_score(y_true, y_pred, pos_label=1, zero_division=0)
         
         return 0.4 * recall_1 + 0.2 * g_mean + 0.2 * auc + 0.2 * precision_1
-
-    def evaluate_final_model_improved(self, best_model_name, results, X_train, y_train, 
-                                    X_test, y_test, verbose=True):
-        """Final evaluation with improved metrics reporting"""
-        if verbose:
-            print(f"\n" + "="*50)
-            print(f"FINAL EVALUATION: {best_model_name}")
-            print("="*50)
-            
-            # Traditional model
-            print("Retraining traditional model on full training set...")
-        else:
-            print(f"Evaluating {best_model_name}...")
-        
-        best_model = results[best_model_name]['model']
-        optimal_threshold = results[best_model_name]['optimal_threshold']
-        
-        # Clone and retrain
-        if hasattr(best_model, 'set_params'):
-            final_model = best_model.__class__(**best_model.get_params())
-        else:
-            from copy import deepcopy
-            final_model = deepcopy(best_model)
-        
-        # Handle different model types for final training
-        # Updated model categorization
-        rf_only_models = ['BalancedRF_Default', 'BalancedRF_Small', 'BalancedRF_Large', 'BalancedRF_Log2', 
-                         'BalancedRF_AllFeatures', 'BalancedRF_Conservative']
-        bagging_ensemble_models = ['BalancedBagging_Default', 'BalancedBagging_Small', 'BalancedBagging_Large',
-                                  'BalancedBagging_HighSample', 
-                                  'RUSBoost_Default', 'RUSBoost_Fast', 'RUSBoost_Conservative', 'RUSBoost_Large',
-                                  'RUSBoost_HighLR',
-                                  'EasyEnsemble_Default', 'EasyEnsemble_Small', 'EasyEnsemble_Large', 'EasyEnsemble_Medium']
-        knn_models = ['KNN_Uniform', 'KNN_Distance', 'KNN_Manhattan', 'KNN_Minkowski', 'KNN_Cosine', 'KNN_Large']
-        
-        # Check if it's a direct model (RF models, baseline bagging/ensemble models, baseline KNN models, baseline LightGBM models, or TabPFN)
-        if (best_model_name in rf_only_models or best_model_name in bagging_ensemble_models or best_model_name in knn_models or best_model_name == 'TabPFN_Default'):
-            # Direct models with power transformation (fit on train only) and scaling
-            pt = PowerTransformer(method='yeo-johnson', standardize=False)
-            X_train_pt = pt.fit_transform(X_train)
-            X_test_pt = pt.transform(X_test)
-
-            scaler = RobustScaler()
-            X_train_scaled = scaler.fit_transform(X_train_pt)
-            X_test_scaled = scaler.transform(X_test_pt)
-            final_model.fit(X_train_scaled, y_train)
-            trained_model_for_plotting = final_model
-            
-            if hasattr(final_model, 'predict_proba'):
-                y_pred_proba = final_model.predict_proba(X_test_scaled)[:, 1]
-            else:
-                y_pred_proba = final_model.decision_function(X_test_scaled)
-                y_pred_proba = (y_pred_proba - y_pred_proba.min()) / \
-                             (y_pred_proba.max() - y_pred_proba.min())
-        elif isinstance(best_model, dict):
-            # Dictionary model - recreate the pipeline manually
-            from copy import deepcopy
-            scaler = RobustScaler()
-            sampler = deepcopy(best_model['sampler'])  # Use deepcopy to preserve nested parameters
-            classifier = deepcopy(best_model['classifier'])  # Use deepcopy for consistency
-            
-            # Apply transformations
-            pt = PowerTransformer(method='yeo-johnson', standardize=False)
-            X_train_pt = pt.fit_transform(X_train)
-            X_train_scaled = scaler.fit_transform(X_train_pt)
-            if sampler is not None:
-                X_train_resampled, y_train_resampled = sampler.fit_resample(X_train_scaled, y_train)
-            else:
-                X_train_resampled, y_train_resampled = X_train_scaled, y_train
-            classifier.fit(X_train_resampled, y_train_resampled)
-            trained_model_for_plotting = classifier
-            
-            X_test_pt = pt.transform(X_test)
-            X_test_scaled = scaler.transform(X_test_pt)
-            if hasattr(classifier, 'predict_proba'):
-                y_pred_proba = classifier.predict_proba(X_test_scaled)[:, 1]
-            else:
-                y_pred_proba = classifier.decision_function(X_test_scaled)
-                y_pred_proba = (y_pred_proba - y_pred_proba.min()) / \
-                             (y_pred_proba.max() - y_pred_proba.min())
-        else:
-            # Regular pipeline models
-            final_model.fit(X_train, y_train)
-            trained_model_for_plotting = final_model
-            
-            if hasattr(final_model, 'predict_proba'):
-                y_pred_proba = final_model.predict_proba(X_test)[:, 1]
-            else:
-                y_pred_proba = final_model.decision_function(X_test)
-                y_pred_proba = (y_pred_proba - y_pred_proba.min()) / \
-                             (y_pred_proba.max() - y_pred_proba.min())
-        
-        # Use AUC-optimal threshold optimization 
-        optimal_threshold, _ = self.find_optimal_threshold(y_test, y_pred_proba, metric='auc_optimal')
-        # Note: Conservative clamping is already handled in find_optimal_threshold method
-        y_pred = (y_pred_proba >= optimal_threshold).astype(int)
-        
-        # Calculate comprehensive metrics
-        test_auc = roc_auc_score(y_test, y_pred_proba)
-        test_recall_0 = recall_score(y_test, y_pred, pos_label=0)
-        test_recall_1 = recall_score(y_test, y_pred, pos_label=1)
-        test_precision_1 = precision_score(y_test, y_pred, pos_label=1)
-        test_f1 = f1_score(y_test, y_pred)
-        test_balanced_acc = balanced_accuracy_score(y_test, y_pred)
-        test_mcc = matthews_corrcoef(y_test, y_pred)
-        test_g_mean = np.sqrt(test_recall_0 * test_recall_1)
-        
-        if verbose:
-            print(f"\nTest Performance:")
-            print(f"AUC ROC: {test_auc:.4f}")
-            print(f"Recall (Class 0): {test_recall_0:.4f}")
-            print(f"Recall (Class 1): {test_recall_1:.4f}")
-            print(f"Precision (Class 1): {test_precision_1:.4f}")
-            print(f"F1 Score: {test_f1:.4f}")
-            print(f"Balanced Accuracy: {test_balanced_acc:.4f}")
-            print(f"G-Mean: {test_g_mean:.4f}")
-            print(f"MCC: {test_mcc:.4f}")
-            print(f"Optimal Threshold: {optimal_threshold:.3f}")
-            
-            print(f"\nClassification Report:")
-            print(classification_report(y_test, y_pred, digits=4))
-            
-            print(f"\nConfusion Matrix:")
-            cm = confusion_matrix(y_test, y_pred)
-            print(cm)
-            print(f"TN: {cm[0,0]}, FP: {cm[0,1]}, FN: {cm[1,0]}, TP: {cm[1,1]}")
-        else:
-            # Brief output for non-verbose mode
-            print(f"  AUC: {test_auc:.4f}, Recall(0): {test_recall_0:.4f}, Recall(1): {test_recall_1:.4f}, G-Mean: {test_g_mean:.4f}, Threshold: {optimal_threshold:.3f}")
-        
-        # Always calculate confusion matrix for completeness
-        cm = confusion_matrix(y_test, y_pred)
-        
-        # Create plots and detailed analysis only in verbose mode
-        if verbose:
-            # Create plots directory
-            plots_dir = './plots'
-            os.makedirs(plots_dir, exist_ok=True)
-
-            # Plot feature importances if available
-            feature_names = X_test.columns
-            self._plot_feature_importance(trained_model_for_plotting, feature_names, best_model_name, plots_dir)
-
-            # Visualizations
-            fig, axes = plt.subplots(2, 2, figsize=(12, 10))
-            
-            # ROC Curve
-            fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
-            axes[0, 0].plot(fpr, tpr, label=f'AUC = {test_auc:.3f}')
-            axes[0, 0].plot([0, 1], [0, 1], 'k--')
-            axes[0, 0].set_xlabel('False Positive Rate')
-            axes[0, 0].set_ylabel('True Positive Rate')
-            axes[0, 0].set_title('ROC Curve')
-            axes[0, 0].legend()
-            axes[0, 0].grid(True)
-            
-            # Precision-Recall curve
-            from sklearn.metrics import precision_recall_curve, average_precision_score
-            precision, recall, _ = precision_recall_curve(y_test, y_pred_proba)
-            ap = average_precision_score(y_test, y_pred_proba)
-            axes[0, 1].plot(recall, precision, label=f'AP = {ap:.3f}')
-            axes[0, 1].set_xlabel('Recall')
-            axes[0, 1].set_ylabel('Precision')
-            axes[0, 1].set_title('Precision-Recall Curve')
-            axes[0, 1].legend()
-            axes[0, 1].grid(True)
-            
-            # Confusion Matrix Heatmap
-            sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=axes[1, 0])
-            axes[1, 0].set_xlabel('Predicted')
-            axes[1, 0].set_ylabel('Actual')
-            axes[1, 0].set_title('Confusion Matrix')
-            
-            # Threshold vs Metrics
-            thresholds_range = np.linspace(0.1, 0.9, 50)
-            recalls_1 = []
-            precisions_1 = []
-            f1_scores = []
-            
-            for t in thresholds_range:
-                y_pred_t = (y_pred_proba >= t).astype(int)
-                if sum(y_pred_t) > 0:  # Avoid division by zero
-                    recalls_1.append(recall_score(y_test, y_pred_t, pos_label=1))
-                    precisions_1.append(precision_score(y_test, y_pred_t, pos_label=1))
-                    f1_scores.append(f1_score(y_test, y_pred_t))
-                else:
-                    recalls_1.append(0)
-                    precisions_1.append(0)
-                    f1_scores.append(0)
-            
-            axes[1, 1].plot(thresholds_range, recalls_1, label='Recall (Class 1)')
-            axes[1, 1].plot(thresholds_range, precisions_1, label='Precision (Class 1)')
-            axes[1, 1].plot(thresholds_range, f1_scores, label='F1 Score')
-            axes[1, 1].axvline(x=optimal_threshold, color='r', linestyle='--', label=f'Optimal ({optimal_threshold:.3f})')
-            axes[1, 1].set_xlabel('Threshold')
-            axes[1, 1].set_ylabel('Score')
-            axes[1, 1].set_title('Metrics vs Threshold')
-            axes[1, 1].legend()
-            axes[1, 1].grid(True)
-            
-            plt.tight_layout()
-            
-            # Save the evaluation plots
-            eval_plot_path = os.path.join(plots_dir, f'{best_model_name}_evaluation_plots.png')
-            plt.savefig(eval_plot_path)
-            print(f"\nSaved evaluation plots to {eval_plot_path}")
-            plt.close(fig) # Close the figure to free memory
-        
-        return {
-            'model': trained_model_for_plotting,
-            'test_auc': test_auc,
-            'test_recall_0': test_recall_0,
-            'test_recall_1': test_recall_1,
-            'test_g_mean': test_g_mean,
-            'optimal_threshold': optimal_threshold,
-            'y_test': y_test,
-            'y_pred': y_pred,
-            'y_pred_proba': y_pred_proba
-        }
     
     def _plot_feature_importance(self, model, feature_names, model_name, plots_dir):
         """Plots and saves feature importances for a given model."""
@@ -1623,6 +1293,207 @@ class ImprovedPTSDModel:
         else:
             print(f"Could not extract feature importances for model {model_name}")
 
+
+    def build_top_model_payloads(self, results, top_k=15, selected_features=None):
+        """Build parameter payloads for top-K models after CV, without saving to disk."""
+        # Sort by combined score (descending)
+        sorted_items = sorted(results.items(), key=lambda x: x[1]['mean_score'], reverse=True)[:top_k]
+
+        payloads = []
+        for _, (model_name, res) in enumerate(sorted_items, start=1):
+            model_obj = res['model']
+            payload = {
+                'name': model_name,
+                'kind': 'direct' if not isinstance(model_obj, dict) else 'dict',
+                'cv_mean_score': float(res.get('mean_score', 0.0)),
+                'cv_mean_recall': float(res.get('mean_recall', 0.0)),
+                'cv_mean_auc': float(res.get('mean_auc', 0.0)),
+                'optimal_threshold': float(res.get('optimal_threshold', 0.5)),
+                'selected_features': selected_features if selected_features is not None else None,
+            }
+
+            if isinstance(model_obj, dict):
+                sampler_params = model_obj['sampler'].get_params() if model_obj.get('sampler') is not None else None
+                classifier_params = model_obj['classifier'].get_params() if model_obj.get('classifier') is not None else None
+                payload.update({
+                    'sampler_params': sampler_params,
+                    'classifier_params': classifier_params,
+                })
+            else:
+                if hasattr(model_obj, 'get_params'):
+                    payload['estimator_params'] = model_obj.get_params()
+                else:
+                    payload['estimator_params'] = {}
+
+            payloads.append(payload)
+
+        return payloads
+
+
+    def _reconstruct_model_by_name(self, model_name, payload):
+        """Recreate a fresh model instance by name and apply saved params."""
+        pipelines = self.create_improved_pipelines()
+        if model_name not in pipelines:
+            raise KeyError(f"Model name '{model_name}' not found in available pipelines.")
+
+        base = pipelines[model_name]
+
+        if payload.get('kind') == 'dict' and isinstance(base, dict):
+            # Apply saved params to classifier/sampler
+            new_dict = {
+                'scaler': RobustScaler(),
+                'sampler': None,
+                'classifier': None,
+            }
+            # Sampler
+            if base.get('sampler') is not None:
+                sampler = base['sampler'].__class__(**base['sampler'].get_params())
+                if payload.get('sampler_params') is not None:
+                    sampler.set_params(**payload['sampler_params'])
+                new_dict['sampler'] = sampler
+            # Classifier
+            classifier = base['classifier'].__class__(**base['classifier'].get_params())
+            if payload.get('classifier_params') is not None:
+                classifier.set_params(**payload['classifier_params'])
+            new_dict['classifier'] = classifier
+            return new_dict
+
+        # Direct estimators
+        if hasattr(base, 'get_params'):
+            
+            fresh = base.__class__(**base.get_params())
+            est_params = payload.get('estimator_params') or {}
+            try:
+                fresh.set_params(**est_params)
+            except ValueError:
+                # In case some params are not recognized due to version skew, ignore silently
+                pass
+            return fresh
+
+        # Fallback: deep copy
+        from copy import deepcopy
+        return deepcopy(base)
+
+    def evaluate_saved_models_with_finetune(self, saved_payloads, X_train, y_train, X_finetune, y_finetune, X_test, y_test):
+        """Load saved configs, reconstruct models, fine-tune on finetune set, then test.
+
+        Fine-tuning strategy:
+        - If estimator supports warm_start and has n_estimators: fit on train, then add trees on finetune.
+        - Otherwise, fit once on train+finetune combined (using the same scaler learned on train).
+        """
+        final_results_all = {}
+
+        for i, payload in enumerate(saved_payloads, start=1):
+            model_name = payload['name']
+            print(f"\nEvaluating saved model {i}/{len(saved_payloads)}: {model_name}")
+
+            model = self._reconstruct_model_by_name(model_name, payload)
+
+            # Handle direct estimators only; dict pipelines can be extended if needed
+            if isinstance(model, dict):
+                # Manual pipeline path (scaler/sampler/classifier)
+                scaler = RobustScaler()
+                pt = PowerTransformer(method='yeo-johnson', standardize=False)
+
+                X_tr_pt = pt.fit_transform(X_train)
+                X_tr_sc = scaler.fit_transform(X_tr_pt)
+                X_ft_pt = pt.transform(X_finetune)
+                X_ft_sc = scaler.transform(X_ft_pt)
+                X_te_pt = pt.transform(X_test)
+                X_te_sc = scaler.transform(X_te_pt)
+
+                sampler = model.get('sampler')
+                classifier = model.get('classifier')
+
+                if sampler is not None:
+                    X_tr_res, y_tr_res = sampler.fit_resample(X_tr_sc, y_train)
+                else:
+                    X_tr_res, y_tr_res = X_tr_sc, y_train
+
+                classifier.fit(X_tr_res, y_tr_res)
+
+                # No generic warm-start for arbitrary classifier; "fine-tune" by refitting on combined set
+                X_combined = np.vstack([X_tr_sc, X_ft_sc])
+                y_combined = np.concatenate([y_train.values if hasattr(y_train, 'values') else y_train,
+                                             y_finetune.values if hasattr(y_finetune, 'values') else y_finetune])
+                if sampler is not None:
+                    X_combined, y_combined = sampler.fit_resample(X_combined, y_combined)
+                classifier.fit(X_combined, y_combined)
+
+                if hasattr(classifier, 'predict_proba'):
+                    y_pred_proba = classifier.predict_proba(X_te_sc)[:, 1]
+                else:
+                    scores = classifier.decision_function(X_te_sc)
+                    y_pred_proba = (scores - scores.min()) / (scores.max() - scores.min())
+
+            else:
+                # Direct estimator path
+                pt = PowerTransformer(method='yeo-johnson', standardize=False)
+                scaler = RobustScaler()
+
+                X_tr_pt = pt.fit_transform(X_train)
+                X_tr_sc = scaler.fit_transform(X_tr_pt)
+                model.fit(X_tr_sc, y_train)
+
+                # Attempt fine-tune with warm_start if available
+                y_pred_proba = None
+                supports_warm = hasattr(model, 'set_params') and 'warm_start' in model.get_params().keys()
+                has_n_estimators = hasattr(model, 'get_params') and ('n_estimators' in model.get_params().keys())
+
+                X_ft_pt = pt.transform(X_finetune)
+                X_ft_sc = scaler.transform(X_ft_pt)
+                X_te_pt = pt.transform(X_test)
+                X_te_sc = scaler.transform(X_te_pt)
+
+                if supports_warm and has_n_estimators:
+                    try:
+                        base_params = model.get_params()
+                        current_estimators = int(base_params.get('n_estimators', 0))
+                        add_estimators = max(25, int(max(1, current_estimators) * 0.3))
+                        model.set_params(warm_start=True, n_estimators=current_estimators + add_estimators)
+                        model.fit(X_ft_sc, y_finetune)
+                    except Exception as _:
+                        # Fallback to refit on combined if warm_start fails
+                        X_combined = np.vstack([X_tr_sc, X_ft_sc])
+                        y_combined = np.concatenate([y_train.values if hasattr(y_train, 'values') else y_train,
+                                                     y_finetune.values if hasattr(y_finetune, 'values') else y_finetune])
+                        model.set_params(warm_start=False)
+                        model.fit(X_combined, y_combined)
+                else:
+                    # No warm start support; refit on combined set using the same scaler
+                    X_combined = np.vstack([X_tr_sc, X_ft_sc])
+                    y_combined = np.concatenate([y_train.values if hasattr(y_train, 'values') else y_train,
+                                                 y_finetune.values if hasattr(y_finetune, 'values') else y_finetune])
+                    model.fit(X_combined, y_combined)
+
+                if hasattr(model, 'predict_proba'):
+                    y_pred_proba = model.predict_proba(X_te_sc)[:, 1]
+                else:
+                    scores = model.decision_function(X_te_sc)
+                    y_pred_proba = (scores - scores.min()) / (scores.max() - scores.min())
+
+            # Threshold optimization and metrics
+            optimal_threshold, _ = self.find_optimal_threshold(y_test, y_pred_proba, metric='auc_optimal')
+            y_pred = (y_pred_proba >= optimal_threshold).astype(int)
+
+            test_auc = roc_auc_score(y_test, y_pred_proba)
+            test_recall_0 = recall_score(y_test, y_pred, pos_label=0)
+            test_recall_1 = recall_score(y_test, y_pred, pos_label=1)
+            test_g_mean = np.sqrt(test_recall_0 * test_recall_1)
+
+            final_results_all[model_name] = {
+                'test_auc': test_auc,
+                'test_recall_0': test_recall_0,
+                'test_recall_1': test_recall_1,
+                'test_g_mean': test_g_mean,
+                'optimal_threshold': optimal_threshold,
+                'cv_mean_score': payload.get('cv_mean_score', 0.0),
+                'cv_mean_recall': payload.get('cv_mean_recall', 0.0),
+                'cv_mean_auc': payload.get('cv_mean_auc', 0.0),
+            }
+
+        return final_results_all
+
     def run_improved_analysis(self, evaluate_traditional_models=True):
         """Run the complete improved analysis
         
@@ -1634,59 +1505,89 @@ class ImprovedPTSDModel:
         print("IMPROVED PTSD PREDICTION MODEL - OPTIMIZED FOR RECALL")
         print("="*70)
         
-        # Load and prepare data
-        merged_df, numeric_features = self.load_data()
-        
-        # Basic preprocessing (missing values already handled in load_data)
-        X = merged_df[numeric_features].copy()
-        y = merged_df['CAPSF1I2s.0'].copy()
-        
-        # Remove missing targets (if any remain)
-        mask = ~y.isna()
-        X, y = X[mask], y[mask]
+        # Load training and test data from separate files
+        train_df, numeric_features_train = self.load_data('./data/pre_deployment_data.pkl')
+        test_df, numeric_features_test = self.load_data('./data/post_deployment_data.pkl')
 
-        # remove where y is not 0 or 1
-        X = X[y.isin([0, 1])]
-        y = y[y.isin([0, 1])]
-        
-        # Remove constant and highly correlated features
-        X = X.loc[:, X.nunique() > 1]
-        
-        # Remove highly correlated features
-        corr_matrix = X.corr().abs()
-        upper_triangle = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
-        high_corr_features = [col for col in upper_triangle.columns if any(upper_triangle[col] > 0.95)]
-        X = X.drop(columns=high_corr_features)
-        
-        y = y.astype(int)
-        
-        print(f"Dataset shape: {X.shape}")
-        print(f"Class distribution: {y.value_counts().to_dict()}")
-        print(f"Class ratio: {len(y[y==1])/len(y)*100:.1f}% positive")
+        # Use features common to both, preserving training order
+        numeric_features = [f for f in numeric_features_train if f in test_df.columns]
 
-        # Remove outliers based on selected features
-        X_selected, y = self.remove_outliers(X, y)
+        # Prepare X/y
+        X_train_raw = train_df[numeric_features].copy()
+        y_train_raw = train_df['CAPSF1I2s.0'].copy()
+        X_test_raw = test_df[numeric_features].copy()
+        y_test_raw = test_df['CAPSF1I2s.0'].copy()
+
+        # Remove missing targets and enforce binary labels
+        mask_train = y_train_raw.notna() & y_train_raw.isin([0, 1])
+        mask_test = y_test_raw.notna() & y_test_raw.isin([0, 1])
+        X_train = X_train_raw[mask_train]
+        y_train = y_train_raw[mask_train].astype(int)
+        X_test = X_test_raw[mask_test]
+        y_test = y_test_raw[mask_test].astype(int)
+        X_test = X_test.reset_index(drop=True)
+        y_test = y_test.reset_index(drop=True)
         
-        # Train-test split: ensure test has at least one positive sample, no balancing
-        X_train_main, X_test_main, y_train_main, y_test_main = self.stratified_train_test_split_with_min_positive(
-            X_selected, y, test_size=0.1, min_positive_test=10
+        X_finetune, X_test, y_finetune, y_test = self.stratified_train_test_split_with_min_positive(
+            X_test, y_test, test_size=0.3, min_positive_test=10
         )
 
-        train_idx = X_train_main.index
-        test_idx = X_test_main.index
+        print(f"Finetuning dataset shape: {X_finetune.shape}")
+        print(f"Finetuning class distribution: {y_finetune.value_counts().to_dict()}")
+        print(f"Test dataset shape: {X_test.shape}")
+        print(f"Test class distribution: {y_test.value_counts().to_dict()}")
+        print(f"Training dataset shape (pre-merge): {X_train.shape}")
+        print(f"Training class distribution: {y_train.value_counts().to_dict()}")
 
-        # Combine
-        X_all = pd.concat([X_train_main, X_test_main], axis=0)
-        y_all = pd.concat([y_train_main, y_test_main], axis=0)
+        X_train = X_train.reset_index(drop=True)
+        X_train.index = X_train.index + 100000
+        y_train.index = X_train.index  
 
-        # Advanced feature engineering
-        X_all, _ = self.advanced_feature_engineering(X_all, y_all)
+        # Preserve indices to split back later
+        train_idx = X_train.index
+        test_idx = X_test.index
+        finetune_idx = X_finetune.index
+
+        print(f"Train indices: {train_idx}")
+        print(f"Test and train overlap: {test_idx.intersection(train_idx)}")
+
+        # Stack into a single combined dataset
+        X_all = pd.concat([X_train, X_finetune, X_test], axis=0)
+        y_all = pd.concat([y_train, y_finetune, y_test], axis=0)
+
+        # Remove constant and highly correlated features on combined data
+        X_all = X_all.loc[:, X_all.nunique() > 1]
+        corr_matrix = X_all.corr().abs()
+        upper_triangle = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
+        high_corr_features = [col for col in upper_triangle.columns if any(upper_triangle[col] > 0.95)]
+        if high_corr_features:
+            X_all = X_all.drop(columns=high_corr_features)
+
+        print(f"Combined dataset shape after basic filtering: {X_all.shape}")
+        print(f"Combined class distribution: {y_all.value_counts().to_dict()}")
+
+        # Remove outliers on the combined data
+        X_all, y_all = self.remove_outliers(X_all, y_all)
+
+        train_idx_final = train_idx.intersection(X_all.index)
+        test_idx_final = test_idx.intersection(X_all.index)
+        finetune_idx_final = finetune_idx.intersection(X_all.index)
+        X_train_main = X_all.loc[train_idx_final]
+        X_test_main = X_all.loc[test_idx_final]
+        y_train_main = y_all.loc[train_idx_final]
+        y_test_main = y_all.loc[test_idx_final]
+        X_finetune_main = X_all.loc[finetune_idx_final]
+        y_finetune_main = y_all.loc[finetune_idx_final]
+
+        # Advanced feature engineering and selection on combined data
+        X_train_main, features_set = self.advanced_feature_engineering(X_train_main, y_train_main)
+        X_train_main, selected_features = self.advanced_feature_selection(X_train_main, y_train_main, n_features=100)
+
+        X_finetune_main, _ = self.advanced_feature_engineering(X_finetune_main, y_finetune_main, provided_top_features=features_set)
+        X_finetune_main = X_finetune_main[selected_features]
         
-        # Advanced feature selection
-        X_all = self.advanced_feature_selection(X_all, y_all, n_features=25)
-
-        X_test_main = X_all.loc[test_idx]
-        X_train_main = X_all.loc[train_idx]
+        X_test_main, _ = self.advanced_feature_engineering(X_test_main, y_test_main, provided_top_features=features_set)
+        X_test_main = X_test_main[selected_features]
         
         traditional_results = {}
         if evaluate_traditional_models:
@@ -1696,10 +1597,6 @@ class ImprovedPTSDModel:
             print("="*70)
             
             traditional_pipelines = self.create_improved_pipelines()
-            # traditional_pipelines, traditional_pipelines2 = self.create_improved_pipelines()
-            # traditional_results2 = self.evaluate_models_holdout(
-            #     X_train_main, y_train_main, traditional_pipelines2, val_size=0.1
-            # )
             traditional_results = self.evaluate_models_cv_improved(X_train_main, y_train_main, traditional_pipelines, cv_folds=7)
             
         else:
@@ -1709,7 +1606,6 @@ class ImprovedPTSDModel:
         
         # All results are just traditional results now
         all_results = traditional_results
-        # all_results = traditional_results | traditional_results2
         
         # Model comparison4
         print(f"\n" + "="*70)
@@ -1722,39 +1618,21 @@ class ImprovedPTSDModel:
 
         print("\nTop models by combined score (emphasizing recall):")
         sorted_models = sorted(all_results.items(), key=lambda x: x[1]['mean_score'], reverse=True)
-        
         for i, (name, result) in enumerate(sorted_models[:10]):
             print(f"{i+1}. {name:<40} Score: {result['mean_score']:.3f}, "
                   f"Recall: {result['mean_recall']:.3f}, "
                   f"AUC: {result['mean_auc']:.3f}")
-        
-        # Evaluate top 15 models instead of just the best one
-        top_10_models = sorted_models[:15]
-        print(f"\nEVALUATING TOP {len(top_10_models)} MODELS ON TEST SET")
+
+        # Build top model payloads in memory and evaluate with fine-tuning on finetune set
+        print(f"\nEVALUATING TOP MODELS WITH FINETUNING ON FINETUNE SET")
         print("="*70)
-        
-        final_results_all = {}
-        
-        for i, (model_name, cv_results) in enumerate(top_10_models):
-            print(f"\nEvaluating model {i+1}/{len(top_10_models)}: {model_name}")
-            
-            # Final evaluation for this model (non-verbose to reduce output)
-            final_result = self.evaluate_final_model_improved(
-                model_name, all_results, X_train_main, y_train_main,
-                X_test_main, y_test_main, verbose=False
-            )
-            
-            # Store results with model name as key
-            final_results_all[model_name] = {
-                'test_auc': final_result['test_auc'],
-                'test_recall_0': final_result['test_recall_0'],  # Recall for class 0
-                'test_recall_1': final_result['test_recall_1'],  # Recall for class 1
-                'test_g_mean': final_result['test_g_mean'],
-                'optimal_threshold': final_result['optimal_threshold'],
-                'cv_mean_score': cv_results['mean_score'],
-                'cv_mean_recall': cv_results['mean_recall'],
-                'cv_mean_auc': cv_results['mean_auc']
-            }
+        top_payloads = self.build_top_model_payloads(all_results, top_k=15, selected_features=selected_features)
+        final_results_all = self.evaluate_saved_models_with_finetune(
+            top_payloads,
+            X_train_main, y_train_main,
+            X_finetune_main, y_finetune_main,
+            X_test_main, y_test_main,
+        )
         
         # Sort models by test AUC performance (best to worst)
         sorted_final_results = sorted(final_results_all.items(), 

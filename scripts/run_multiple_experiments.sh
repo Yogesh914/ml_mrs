@@ -7,9 +7,9 @@
 NUM_RUNS=${1:-5}
 
 # File names
-PYTHON_SCRIPT="ml_pipelines_latest.py"
-RESULTS_DIR="experiment_results"
-SUMMARY_FILE="experiment_summary.txt"
+PYTHON_SCRIPT="ml_pipeline_pre.py"
+RESULTS_DIR="../pre_run/experiment_results"
+SUMMARY_FILE="../pre_run/experiment_summary.txt"
 
 # Create results directory
 mkdir -p "$RESULTS_DIR"
@@ -74,6 +74,13 @@ for ((i=1; i<=NUM_RUNS; i++)); do
     
     # Record start time for this run
     run_start_time=$(date +%s)
+    
+    # Clean up saved models from previous run
+    if [ -d "./runs/saved_models" ]; then
+        echo "Removing existing saved_models directory..."
+        rm -rf "./runs/saved_models"
+        echo "✓ saved_models directory cleaned"
+    fi
     
     # Run the Python script and capture output
     echo "Executing: python $PYTHON_SCRIPT"

@@ -77,16 +77,16 @@ def compute_mean_ranks(base_dir: Path, output_path: Path) -> None:
 
 def main() -> None:
     if len(sys.argv) >= 2:
-        base_dir = Path(sys.argv[1]).expanduser().resolve()
+        base_dir = "../"
     else:
         base_dir = (
-            Path(__file__).parent / "experiment_results"
+            Path(__file__).parent / "../pre_run_100/experiment_results"
         ).resolve()
 
     if len(sys.argv) >= 3:
         output_path = Path(sys.argv[2]).expanduser().resolve()
     else:
-        output_path = (base_dir / "feature_mean_rank.txt").resolve()
+        output_path = (base_dir / "../feature_mean_rank.txt").resolve()
 
     compute_mean_ranks(base_dir, output_path)
     print(f"Wrote mean ranks for features to: {output_path}")
