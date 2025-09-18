@@ -1,12 +1,3 @@
-"""
-Improved PTSD Prediction Model - Enhanced for Imbalanced Data
-This model specifically addresses:
-1. Low recall for positive class (PTSD cases)
-2. Severe class imbalance
-3. Threshold optimization
-4. Advanced loss functions for imbalanced learning
-"""
-
 from tabnanny import verbose
 from turtle import mode    
 import numpy as np
