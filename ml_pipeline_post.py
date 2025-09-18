@@ -41,8 +41,8 @@ from imblearn.pipeline import Pipeline as ImbPipeline
 from imblearn.ensemble import (BalancedRandomForestClassifier, BalancedBaggingClassifier,
                               RUSBoostClassifier, EasyEnsembleClassifier)
 import xgboost as xgb
-from tabpfn import TabPFNClassifier
-from tabpfn_extensions.post_hoc_ensembles.sklearn_interface import AutoTabPFNClassifier
+# from tabpfn import TabPFNClassifier
+# from tabpfn_extensions.post_hoc_ensembles.sklearn_interface import AutoTabPFNClassifier
 from sklearn.utils.class_weight import compute_class_weight, compute_sample_weight
 import warnings
 import os
@@ -712,26 +712,6 @@ class ImprovedPTSDModel:
         top_10_indices = np.argsort(combined_scores)[-10:][::-1]
         for idx in top_10_indices:
             print(f"  {X.columns[idx]}: {combined_scores[idx]:.4f}")
-        
-        # selected_features = [
-        #     "habituation",
-        #     "HRV_GI",
-        #     "HRV_MFDFA_alpha1_Asymmetry",
-        #     "HR_5min.0_max_HRV_pNN20",
-        #     "feature_max",
-        #     "stress_load_geometric",
-        #     "p114_t1",
-        #     "HRV_MeanNN_exp_decay",
-        #     "HRV_kurtosis",
-        #     "sCortisol",
-        #     "HRV_SI",
-        #     "HRV_Cd",
-        #     "HRV_MFDFA_alpha1_Delta",
-        #     "autonomic_balance",
-        #     "uNE",
-        #     "base",
-        #     "feature_mad",
-        # ]
 
         return X[selected_features]
     
@@ -921,41 +901,6 @@ class ImprovedPTSDModel:
                 n_estimators=15,
                 random_state=self.random_state,
             ),
-            # 'SVC_Balanced': SVC(
-            #     class_weight='balanced',
-            #     kernel='rbf',
-            #     probability=True,
-            #     break_ties=True,
-            #     random_state=self.random_state
-            # ),
-            # 'Nu_SVC': NuSVC(
-            #     class_weight='balanced',
-            #     kernel='rbf',
-            #     probability=True,
-            #     break_ties=True,
-            #     random_state=self.random_state
-            # ),
-            # 'KNN_Uniform': KNeighborsClassifier(
-            #     n_neighbors=5,
-            #     weights='uniform',
-            #     metric='euclidean',
-            # ),
-            # 'KNN_Minkowski': KNeighborsClassifier(
-            #     n_neighbors=9,
-            #     weights='distance',
-            #     metric='minkowski',
-            #     p=3,
-            # ),
-            # 'KNN_Cosine': KNeighborsClassifier(
-            #     n_neighbors=7,
-            #     weights='distance',
-            #     metric='cosine',
-            # ),
-            # 'KNN_Large': KNeighborsClassifier(
-            #     n_neighbors=15,
-            #     weights='distance',
-            #     metric='euclidean',
-            # ),
             
         }
 
@@ -1635,8 +1580,8 @@ class ImprovedPTSDModel:
         print("="*70)
         
         # Load training and test data from separate files
-        train_df, numeric_features_train = self.load_data('pre_deployment_data.pkl')
-        test_df, numeric_features_test = self.load_data('post_deployment_data_changed_ptsd.pkl')
+        train_df, numeric_features_train = self.load_data('./data/pre_deployment_data_synthetic_train.pkl')
+        test_df, numeric_features_test = self.load_data('./data/pre_deployment_data_synthetic_test.pkl')
 
         # Use features common to both, preserving training order
         numeric_features = [f for f in numeric_features_train if f in test_df.columns]
@@ -1659,6 +1604,9 @@ class ImprovedPTSDModel:
         print(f"Training class distribution: {y_train.value_counts().to_dict()}")
         print(f"Test dataset shape (pre-merge): {X_test.shape}")
         print(f"Test class distribution: {y_test.value_counts().to_dict()}")
+
+        X_train.index = X_train.index + 200000
+        y_train.index = X_train.index  
 
         # Preserve original indices to split back later
         train_idx = X_train.index
@@ -1684,7 +1632,7 @@ class ImprovedPTSDModel:
 
         # Advanced feature engineering and selection on combined data
         X_all, _ = self.advanced_feature_engineering(X_all, y_all)
-        X_all = self.advanced_feature_selection(X_all, y_all, n_features=25)
+        X_all = self.advanced_feature_selection(X_all, y_all, n_features=100)
 
         # Split back to train and test using preserved indices (only those that survived)
         train_idx_final = train_idx.intersection(X_all.index)
@@ -1702,10 +1650,6 @@ class ImprovedPTSDModel:
             print("="*70)
             
             traditional_pipelines = self.create_improved_pipelines()
-            # traditional_pipelines, traditional_pipelines2 = self.create_improved_pipelines()
-            # traditional_results2 = self.evaluate_models_holdout(
-            #     X_train_main, y_train_main, traditional_pipelines2, val_size=0.1
-            # )
             traditional_results = self.evaluate_models_cv_improved(X_train_main, y_train_main, traditional_pipelines, cv_folds=7)
             
         else:
@@ -1715,7 +1659,6 @@ class ImprovedPTSDModel:
         
         # All results are just traditional results now
         all_results = traditional_results
-        # all_results = traditional_results | traditional_results2
         
         # Model comparison4
         print(f"\n" + "="*70)

@@ -7,9 +7,9 @@
 NUM_RUNS=${1:-5}
 
 # File names
-PYTHON_SCRIPT="ml_pipeline_pre.py"
-RESULTS_DIR="../pre_run/experiment_results"
-SUMMARY_FILE="../pre_run/experiment_summary.txt"
+PYTHON_SCRIPT="ml_pipeline_combined.py"
+RESULTS_DIR="../combined_run_90/experiment_results"
+SUMMARY_FILE="../combined_run_90/experiment_summary.txt"
 
 # Create results directory
 mkdir -p "$RESULTS_DIR"

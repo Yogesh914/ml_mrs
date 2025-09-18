@@ -412,7 +412,7 @@ class ImprovedPTSDModel:
         print("Creating advanced category aggregations...")
         
         # HRV aggregations with more statistics
-        hrv_cols = [col for col in X.columns if any(hrv in col for hrv in ['HRV', 'HR', 'NN', 'RR'])]
+        hrv_cols = [col for col in X.columns if any(hrv in col for hrv in ['HRV', 'HR', 'NN', 'RR', 'RMSSD', 'SDNN'])]
         if hrv_cols:
             X_engineered['HRV_mean'] = X[hrv_cols].mean(axis=1)
             X_engineered['HRV_std'] = X[hrv_cols].std(axis=1)
@@ -424,7 +424,7 @@ class ImprovedPTSDModel:
             X_engineered['HRV_kurtosis'] = X[hrv_cols].kurtosis(axis=1)
         
         # Frequency domain aggregations
-        freq_cols = [col for col in X.columns if any(freq in col for freq in ['LF', 'HF', 'VLF', 'RMSSD'])]
+        freq_cols = [col for col in X.columns if any(freq in col for freq in ['LF', 'HF', 'VLF'])]
         if freq_cols:
             X_engineered['FREQ_mean'] = X[freq_cols].mean(axis=1)
             X_engineered['FREQ_std'] = X[freq_cols].std(axis=1)
@@ -1382,6 +1382,8 @@ class ImprovedPTSDModel:
         - Otherwise, fit once on train+finetune combined (using the same scaler learned on train).
         """
         final_results_all = {}
+        test_pred_labels = {}
+        test_pred_probas = {}
 
         for i, payload in enumerate(saved_payloads, start=1):
             model_name = payload['name']
@@ -1475,6 +1477,9 @@ class ImprovedPTSDModel:
             # Threshold optimization and metrics
             optimal_threshold, _ = self.find_optimal_threshold(y_test, y_pred_proba, metric='auc_optimal')
             y_pred = (y_pred_proba >= optimal_threshold).astype(int)
+            # Attach indices for alignment downstream
+            y_pred_series = pd.Series(y_pred, index=X_test.index)
+            y_pred_proba_series = pd.Series(y_pred_proba, index=X_test.index)
 
             test_auc = roc_auc_score(y_test, y_pred_proba)
             test_recall_0 = recall_score(y_test, y_pred, pos_label=0)
@@ -1492,7 +1497,11 @@ class ImprovedPTSDModel:
                 'cv_mean_auc': payload.get('cv_mean_auc', 0.0),
             }
 
-        return final_results_all
+            # Store predictions for later CSV export
+            test_pred_labels[model_name] = y_pred_series
+            test_pred_probas[model_name] = y_pred_proba_series
+
+        return final_results_all, test_pred_labels, test_pred_probas
 
     def run_improved_analysis(self, evaluate_traditional_models=True):
         """Run the complete improved analysis
@@ -1506,9 +1515,9 @@ class ImprovedPTSDModel:
         print("="*70)
         
         # Load training and test data from separate files
-        train_df, numeric_features_train = self.load_data('./data/pre_deployment_data.pkl')
-        test_df, numeric_features_test = self.load_data('./data/post_deployment_data_synthetic_test.pkl')
-        finetune_df, numeric_features_finetune = self.load_data('./data/post_deployment_data_synthetic_finetune.pkl')
+        train_df, numeric_features_train = self.load_data('./data/pre_deployment_data_stable_ptsd.pkl')
+        finetune_df, numeric_features_test = self.load_data('./data/post_deployment_data_stable_ptsd.pkl')
+        test_df, numeric_features_test = self.load_data('./data/changed_ptsd.pkl')
 
         # Use features common to both, preserving training order
         numeric_features = [f for f in numeric_features_train if f in test_df.columns]
@@ -1516,30 +1525,30 @@ class ImprovedPTSDModel:
         # Prepare X/y
         X_train_raw = train_df[numeric_features].copy()
         y_train_raw = train_df['CAPSF1I2s.0'].copy()
+        X_finetune_raw = finetune_df[numeric_features].copy()
+        y_finetune_raw = finetune_df['CAPSF1I2s.0'].copy()
         X_test_raw = test_df[numeric_features].copy()
         y_test_raw = test_df['CAPSF1I2s.0'].copy()
 
         # Remove missing targets and enforce binary labels
         mask_train = y_train_raw.notna() & y_train_raw.isin([0, 1])
         mask_test = y_test_raw.notna() & y_test_raw.isin([0, 1])
+        mask_finetune = y_finetune_raw.notna() & y_finetune_raw.isin([0, 1])
         X_train = X_train_raw[mask_train]
         y_train = y_train_raw[mask_train].astype(int)
+        X_finetune = X_finetune_raw[mask_finetune]
+        y_finetune = y_finetune_raw[mask_finetune].astype(int)
         X_test = X_test_raw[mask_test]
         y_test = y_test_raw[mask_test].astype(int)
         X_test = X_test.reset_index(drop=True)
         y_test = y_test.reset_index(drop=True)
-
-        X_finetune_raw = finetune_df[numeric_features].copy()
-        y_finetune_raw = finetune_df['CAPSF1I2s.0'].copy()
-
-        mask_finetune = y_finetune_raw.notna() & y_finetune_raw.isin([0, 1])
-        X_finetune = X_finetune_raw[mask_finetune]
-        y_finetune = y_finetune_raw[mask_finetune].astype(int)
-
-
+        X_finetune = X_finetune.reset_index(drop=True)
+        y_finetune = y_finetune.reset_index(drop=True)
+        X_train = X_train.reset_index(drop=True)
+        y_train = y_train.reset_index(drop=True)
         
         # X_finetune, X_test, y_finetune, y_test = self.stratified_train_test_split_with_min_positive(
-        #     X_test, y_test, test_size=0.1, min_positive_test=10
+        #     X_test, y_test, test_size=0.3, min_positive_test=10
         # )
 
         print(f"Finetuning dataset shape: {X_finetune.shape}")
@@ -1549,13 +1558,10 @@ class ImprovedPTSDModel:
         print(f"Training dataset shape (pre-merge): {X_train.shape}")
         print(f"Training class distribution: {y_train.value_counts().to_dict()}")
 
-        X_train = X_train.reset_index(drop=True)
         X_train.index = X_train.index + 100000
-        y_train.index = X_train.index 
-
-        X_finetune = X_finetune.reset_index(drop=True)
+        y_train.index = X_train.index  
         X_finetune.index = X_finetune.index + 200000
-        y_finetune.index = X_finetune.index
+        y_finetune.index = X_finetune.index  
 
         # Preserve indices to split back later
         train_idx = X_train.index
@@ -1641,12 +1647,27 @@ class ImprovedPTSDModel:
         print(f"\nEVALUATING TOP MODELS WITH FINETUNING ON FINETUNE SET")
         print("="*70)
         top_payloads = self.build_top_model_payloads(all_results, top_k=15, selected_features=selected_features)
-        final_results_all = self.evaluate_saved_models_with_finetune(
+        final_results_all, test_pred_labels, test_pred_probas = self.evaluate_saved_models_with_finetune(
             top_payloads,
             X_train_main, y_train_main,
             X_finetune_main, y_finetune_main,
             X_test_main, y_test_main,
         )
+
+        # Build and save test predictions DataFrame with one column per model
+        try:
+            preds_df = pd.DataFrame(index=X_test_main.index)
+            preds_df['y_true'] = y_test_main
+            for model_name, series in test_pred_labels.items():
+                preds_df[f'{model_name}__pred'] = series
+            for model_name, series in test_pred_probas.items():
+                preds_df[f'{model_name}__proba'] = series
+            os.makedirs('runs', exist_ok=True)
+            out_path = os.path.join('runs', 'test_predictions.csv')
+            preds_df.to_csv(out_path, index_label='row_index')
+            print(f"Saved per-model test predictions to {out_path}")
+        except Exception as e:
+            print(f"Warning: failed to save test predictions CSV: {e}")
         
         # Sort models by test AUC performance (best to worst)
         sorted_final_results = sorted(final_results_all.items(), 
